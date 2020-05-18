@@ -17,9 +17,8 @@ const App = () => {
       d.TOV = +d.TOV;
       d.PTS = +d.PTS;
       d.TSP = +d.TSP;
-
     }) 
-    console.log(data[20]);
+    console.log(data[0]);
   });
   
   return (
