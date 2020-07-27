@@ -4,14 +4,13 @@ import './App.css';
 import * as d3 from 'd3';
 import importedCsvData from './assets/players.csv';
 import Images from'./Images';
-// import MJ from './assets/images/jordan91.jpg';
 
 
 const App = () => {
-  let playersWithImages = [];
 
   d3.csv(importedCsvData).then(function(data) {
     data.forEach(function(d) {
+      d.Rk = + d.Rk;
       d.TRB = +d.TRB;
       d.AST = +d.AST;
       d.STL = +d.STL;
@@ -30,13 +29,13 @@ const App = () => {
     
       for (var i = 0; i < data.length; i++) {
         for (var y = 0; y < Images.length; y++) {
-          if (data[i].Rk == Images[y].id) {
+          if (data[i].Rk === Images[y].id) {
             Object.assign(data[i], Images[y]); //merges 2nd param into first
           }
         }
       }
-     playersWithImages.push(data); // so data can be accessed outside of above function
-     console.log(playersWithImages);
+      // so data can be accessed outside of above function
+     console.log(data[48]);
      
      
       
@@ -45,7 +44,7 @@ const App = () => {
     
   });
 
-  console.log(playersWithImages);
+
   
 
 
@@ -55,8 +54,10 @@ const App = () => {
   
   return (
     <div> 
-      {/* {Images.map(({id, src, alt}) => <img key={id} src={src} alt={alt} />)} */}
-      <img src='' alt = "" />
+      
+      <img src={require(`${Images[47].src}`)} alt = {`${Images[0].alt}`} /> 
+      {/* please god, above continue to work to display images */}
+      
     </div>
     
   )
