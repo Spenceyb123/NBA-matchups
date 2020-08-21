@@ -4,6 +4,7 @@ import './App.css';
 import * as d3 from 'd3';
 import importedCsvData from './assets/players.csv';
 import Images from'./Images';
+import PlayerCard from './PlayerCard';
 
 
 const App = () => {
@@ -57,7 +58,11 @@ const App = () => {
       
       <img src={require(`${Images[47].src}`)} alt = {`${Images[0].alt}`} /> 
       {/* please god, above continue to work to display images */}
-      
+      <div className="cards-container">
+        <PlayerCard/>
+        <PlayerCard/>
+        </div>
+
     </div>
     
   )
