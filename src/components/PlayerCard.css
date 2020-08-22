@@ -1,4 +1,11 @@
-/* img {
-    display: flex;
-    flex-direction: row;
-} */
+.mtg-card-container {
+    position: relative;
+}
+
+.player-image {
+    position: absolute;
+    height: 245px;
+    width: 330px;
+    top: 65px;
+    left: 37px;
+}

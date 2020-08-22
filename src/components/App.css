@@ -8,9 +8,12 @@ body{
   
 }
 
-.cards-container {
+/* 100vh below so can align-items: center, hopefully it doesn't mess anything up later  */
+.cards-container { 
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  height: 100vh;
   justify-content: space-evenly;
+  
 }
 

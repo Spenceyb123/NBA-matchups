@@ -59,8 +59,10 @@ const App = () => {
      
       {/* please god, above continue to work to display images */}
       <div className="cards-container">
-        <PlayerCard images={Images}/>
-        <PlayerCard images={Images}/>
+        
+        <PlayerCard className="card"/>
+        <PlayerCard className="card"/>
+        
         
         </div>
 

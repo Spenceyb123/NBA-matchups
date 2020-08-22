@@ -1,20 +1,19 @@
 import React from 'react';
-
-import Card from "../assets/images/mtg-card.png";
+import './PlayerCard.css';
+import MTGCard from "../assets/images/mtg-card.png";
 import Images from "../Images";
 require('../Images');
-
-console.log(Images.src);
-
 
 const PlayerCard = (props) => {
       
     return (
-    <div>
+    <div className="mtg-card-container">
         
-        <img src={Card} alt="player card"/> 
+        <img src={MTGCard} alt="player card"/>
+        <img className="player-image" src={Images[25].src} /> 
+        {/* {put img in App instead so that can render two different images?} */}
     
-        <img src={Images[2].src} />
+        {/* <img src={Images[2].src} /> images diplaying now, but not quite sure where to render them yet*/} 
         
 
     </div>
