@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 // import $ from 'jquery';
 import * as d3 from 'd3';
-import importedCsvData from './assets/players.csv';
-import Images from'./Images';
+import importedCsvData from '../assets/players.csv';
+import Images from'../Images';
 import PlayerCard from './PlayerCard';
 
 
@@ -36,7 +36,7 @@ const App = () => {
         }
       }
       // so data can be accessed outside of above function
-     console.log(data[48]);
+    //  console.log(data[48]);
      
      
       
@@ -55,12 +55,13 @@ const App = () => {
   
   return (
     <div> 
-      
-      <img src={require(`${Images[47].src}`)} alt = {`${Images[0].alt}`} /> 
+      {console.log(Images[0].src)}
+     
       {/* please god, above continue to work to display images */}
       <div className="cards-container">
-        <PlayerCard/>
-        <PlayerCard/>
+        <PlayerCard images={Images}/>
+        <PlayerCard images={Images}/>
+        
         </div>
 
     </div>
