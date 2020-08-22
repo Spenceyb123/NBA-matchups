@@ -8,6 +8,7 @@ import PlayerCard from './PlayerCard';
 
 
 const App = () => {
+  
 
   d3.csv(importedCsvData).then(function(data) {
     data.forEach(function(d) {
@@ -35,8 +36,8 @@ const App = () => {
           }
         }
       }
-      // so data can be accessed outside of above function
-    //  console.log(data[48]);
+      // so data can be accessed outside of above function?????
+    //  console.log(data[47]);
      
      
       
@@ -46,22 +47,21 @@ const App = () => {
   });
 
 
-  
-
-
-
 
   
   
   return (
     <div> 
-      {console.log(Images[0].src)}
-     
-      {/* please god, above continue to work to display images */}
+   
       <div className="cards-container">
         
-        <PlayerCard className="card"/>
-        <PlayerCard className="card"/>
+        <PlayerCard >
+          
+          </PlayerCard>
+
+        <PlayerCard >
+         
+        </PlayerCard>
         
         
         </div>
