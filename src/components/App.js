@@ -32,7 +32,7 @@ const App = () => {
       for (var i = 0; i < data.length; i++) {
         for (var y = 0; y < Images.length; y++) {
           if (data[i].Rk === Images[y].id) {
-            Object.assign(data[i], Images[y]); //merges 2nd param into first
+            Object.assign(Images[y], data[i]); //merges 2nd param into first
           }
         }
       }
@@ -45,9 +45,6 @@ const App = () => {
           
     
   });
-
-
-
   
   
   return (
