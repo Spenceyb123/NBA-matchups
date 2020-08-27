@@ -1,17 +1,32 @@
 .mtg-card-container {
-    position: relative;
+    position: 
+    relative;
 }
 
-.player-image-container {
+
+.name-container {
+    position: absolute;
+    width: 320px;
+    height: 20px;
+    top: 37px;
+    left: 45px;
+  }
+
+  span {
+      float: right;
+      padding-right: 15px;
+  }
+  
+  .player-image-container {
     position: absolute;
     height: 245px;
     width: 330px;
     top: 65px;
     left: 37px;
-}
-
-.player-image {
+  }
+  
+  .player-image {
     position: absolute;
-    height: 245px;
-    width: 330px;
-}
+    height: 100%;
+    width: 100%;
+  }

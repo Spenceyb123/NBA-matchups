@@ -47,17 +47,19 @@ const App = () => {
   });
   
   
+  
   return (
     <div> 
-   
+    
       <div className="cards-container">
         
+        
         <PlayerCard >
-          
+        
           </PlayerCard>
 
         <PlayerCard >
-         
+        
         </PlayerCard>
         
         
