@@ -24,15 +24,14 @@ class PlayerCard extends React.Component {
     loadData() {
         setTimeout(()=> {
             this.setState({
-                data: Images
+                data: Images,
             });
-        }, 60);
+        }, 80);
     }
     
          
     render(){
         const random = Math.floor(Math.random() * Images.length); //this is to delay rendering until all data loads (Iages array merging with data in App)
-        console.log(Images);
         if (!this.state.data) {
             return <div />
         }

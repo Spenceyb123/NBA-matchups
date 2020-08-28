@@ -4,7 +4,7 @@ import './App.css';
 import * as d3 from 'd3';
 import importedCsvData from '../assets/players.csv';
 import Images from'../Images';
-import BasketballButton from "../assets/images/basketball-button.webp";
+import BasketballButton from "../assets/images/basketball-button.png";
 import PlayerCard from './PlayerCard';
 
 
@@ -39,12 +39,16 @@ const App = () => {
   return (
     <div> 
 
-      {/* <img src={BasketballButton}/> */}
+      <div className="basketball-container"> 
+      <img className="basketball" src={BasketballButton}/>
+      </div>
+      
     
       <div className="cards-container">
         
         
         <PlayerCard >
+          {console.log(PlayerCard)}
         
           </PlayerCard>
 
