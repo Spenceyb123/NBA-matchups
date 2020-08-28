@@ -17,8 +17,8 @@ class PlayerCard extends React.Component {
         };
     }
 
-    componentDidMount() {
-        this.loadData();
+    componentDidMount() {  //this and loadData are to make sure all data loaded before rendering component in App
+        this.loadData(); 
     }
 
     loadData() {
@@ -26,98 +26,12 @@ class PlayerCard extends React.Component {
             this.setState({
                 data: Images
             });
-        }, 50);
+        }, 60);
     }
     
-   
-    // experimenting below....
-    
-
-    // function randomize () {
-        
-    //     setTimeout(function() {
-    //         console.log(randomImgs.src);
-    //         return document.getElementsByClassName('player-image').src = randomImgs.src; 
-    //         // document.getElementsByClassName('player-image').alt = randomImgs.Player];
-    //     },200);
-        
-        // console.log(randomImgs);
          
-        
-
-        ///working on this....................
-    // }
-
-    // const name = () => {
-        
-    //     setTimeout(function(){
-    //         console.log(randomImgs.Player);
-    //         document.getElementsByClassName('name-container').innerHTML = randomImgs.Player;
-            
-           
-            
-    //     }, 1000);
-    // }
-
-    // console.log(name);
-
-    // function resolveAfter2Seconds() { 
-    //     return new Promise(resolve => {
-    //       setTimeout(() => {
-    //         resolve(randomImgs.Player);
-    //       }, 200);
-    //     });
-    //   }
-      
-    //   async function f1() {
-    //     // var randName = await resolveAfter2Seconds();
-    //     // console.log(randomImgs.Player); // player names
-    //     var randName = await randomImgs.Player;
-    //     console.log(randName);
-    //   }
-      
-    //   f1();
-
-    // function a() {
-    //     return randomImgs.Player;
-        
-    // }
-     
-    // var y;
-     
-    // function set_y () {
-    //     y = a();
-    //     console.log(y);
-    //     document.querySelector(".name-container").innerHTML = y;
-    // }
-     //so close!!!
-    // setTimeout(set_y, 200);
-
-    // function sayHi() {
-        
-    //     document.querySelector(".name-container").innerHTML = randomImgs.Player;
-    //     // console.log(Images);
-    //     console.log(randomImgs.Player);
-    //   }
-      
-    //   function sayHi2() {
-        
-    //     document.querySelector(".name-container2").innerHTML = randomImgs.Player;
-    //     // console.log(Images);
-    //     console.log(randomImgs.Player);
-    //   }
-      
-    //   console.log(setTimeout(sayHi, 100));
-   
-    // does settimout on player image container also reset first card too?????????????? -------!!!!
-
-    // random={setTimeout(function() {
-    //     document.querySelector(".name-container").innerHTML = randomImgs.Player;
-    // }, 100)} // went in player image....
-
-        /// end experiment----------------------
     render(){
-        const random = Math.floor(Math.random() * Images.length);
+        const random = Math.floor(Math.random() * Images.length); //this is to delay rendering until all data loads (Iages array merging with data in App)
         console.log(Images);
         if (!this.state.data) {
             return <div />
@@ -132,6 +46,20 @@ class PlayerCard extends React.Component {
                 <div className="name-container">{this.state.data[random].Player}<span>{this.state.data[random].Season}</span></div>
                 <div className="player-image-container">
                     <img className="player-image" src= {this.state.data[random].src} alt = {this.state.data[random].alt} />
+                </div>
+                <div className="stats">
+        <p className="stats-paragraph left">PPG: {this.state.data[random].PTS}</p>
+                    <p className="stats-paragraph left">TSP: {this.state.data[random].PTS}</p>
+                    <p className="stats-paragraph left">APG: {this.state.data[random].AST}</p>
+                    <p className="stats-paragraph left">RPG: {this.state.data[random].TRB}</p>
+
+                    <div className="stats-right-container">
+                    <p className="stats-paragraph right">BPG: {this.state.data[random].BLK}</p>
+                    <p className="stats-paragraph right">SPG: {this.state.data[random].STL}</p>
+                    <p className="stats-paragraph right">TPG: {this.state.data[random].TOV}</p>
+                    </div>
+                    
+                    
                 </div>
                 
             

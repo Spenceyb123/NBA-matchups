@@ -4,6 +4,7 @@ import './App.css';
 import * as d3 from 'd3';
 import importedCsvData from '../assets/players.csv';
 import Images from'../Images';
+import BasketballButton from "../assets/images/basketball-button.webp";
 import PlayerCard from './PlayerCard';
 
 
@@ -21,13 +22,7 @@ const App = () => {
       d.PTS = +d.PTS;
       d.TSP = +d.TSP;
 
-      
-      // let finishedWithImages = { ...d, ...Images };
-      // console.log(finishedWithImages);
-      // $.extend(d, Images);
-     
     }) 
-    // console.log(data); data like expected, hell ya
     
       for (var i = 0; i < data.length; i++) {
         for (var y = 0; y < Images.length; y++) {
@@ -35,14 +30,7 @@ const App = () => {
             Object.assign(Images[y], data[i]); //merges 2nd param into first
           }
         }
-      }
-      // so data can be accessed outside of above function?????
-    //  console.log(data[47]);
-     
-     
-      
-     
-          
+      }  
     
   });
   
@@ -50,6 +38,8 @@ const App = () => {
   
   return (
     <div> 
+
+      {/* <img src={BasketballButton}/> */}
     
       <div className="cards-container">
         

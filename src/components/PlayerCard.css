@@ -1,15 +1,21 @@
 .mtg-card-container {
-    position: 
-    relative;
+    position: relative;
+    width: 351.433px;
+    height: 492px;
+    /* overflow: hidden; */
 }
 
+.MTG-card {
+   height: 100%;
+}
 
 .name-container {
     position: absolute;
-    width: 320px;
-    height: 20px;
-    top: 37px;
-    left: 45px;
+    width: 295px;
+    height: 22px;
+    top: 32px;
+    left: 30px;
+    padding-left: 5px;
   }
 
   span {
@@ -19,10 +25,10 @@
   
   .player-image-container {
     position: absolute;
-    height: 245px;
-    width: 330px;
-    top: 65px;
-    left: 37px;
+    height: 213px;
+    width: 290.6px;
+    top: 59px;
+    left: 29px;
   }
   
   .player-image {
@@ -30,3 +36,34 @@
     height: 100%;
     width: 100%;
   }
+
+  .stats {
+      position: absolute;
+      width: 290.6px;
+      height: 137px;
+      top: 307px;
+      left: 40px;
+  }
+
+  .stats-paragraph {
+    margin: 13px 15px;
+    margin-left: 25px;
+    width: 40%;
+  }
+
+  .stats-right-container {
+      float: right;
+      position: absolute;
+      top: 0;
+      right: 15%;
+      width: 50%;
+  }
+
+  .stats-paragraph.right {
+    width: 100%;
+    padding-left: 25px;
+  }
+
+  /* .stats-paragraph.right {
+      float: right;
+  } */
