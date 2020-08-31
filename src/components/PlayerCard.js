@@ -11,26 +11,33 @@ class PlayerCard extends React.Component {
     
     constructor(props) {
         super(props)
+        setTimeout(function(){
+            console.log(props.handleBasketballButton);
+        },2000)
+    
         
         this.state = {
             data: null //This is what our data will eventually be loaded into
         };
+
+        
     }
 
-    componentDidMount() {  //this and loadData are to make sure all data loaded before rendering component in App
-        this.loadData(); 
-    }
 
     loadData() {
         setTimeout(()=> {
             this.setState({
                 data: Images,
             });
-        }, 80);
+        }, 100);
     }
-    
+
+   componentDidMount() {  //this and loadData are to make sure all data loaded before rendering component in App
+        this.loadData(); 
+    }
+
          
-    render(){
+    render(props){
         const random = Math.floor(Math.random() * Images.length); //this is to delay rendering until all data loads (Iages array merging with data in App)
         if (!this.state.data) {
             return <div />
@@ -41,13 +48,12 @@ class PlayerCard extends React.Component {
             <div className="mtg-card-container">
                 
                 <img className="MTG-card" src={MTGCard} alt="player card"/>
-        
                 <div className="name-container">{this.state.data[random].Player}<span>{this.state.data[random].Season}</span></div>
                 <div className="player-image-container">
                     <img className="player-image" src= {this.state.data[random].src} alt = {this.state.data[random].alt} />
                 </div>
                 <div className="stats">
-        <p className="stats-paragraph left">PPG: {this.state.data[random].PTS}</p>
+                    <p className="stats-paragraph left">PPG: {this.state.data[random].PTS}</p>
                     <p className="stats-paragraph left">TSP: {this.state.data[random].PTS}</p>
                     <p className="stats-paragraph left">APG: {this.state.data[random].AST}</p>
                     <p className="stats-paragraph left">RPG: {this.state.data[random].TRB}</p>

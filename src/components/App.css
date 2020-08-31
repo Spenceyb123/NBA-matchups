@@ -28,8 +28,26 @@ body{
   transform: translate(-50%, -50%);
 }
 
+/* last three lines to but glow around bball */
 .basketball {
   width:100%;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0px 0px 9px 4px white;
+  animation: glow 1s linear infinite alternate;
+}
+
+.basketball:active {
+  transform: translateY(10px);
+}
+
+@keyframes glow{
+  to {
+    box-shadow: 0px 0px 15px 9.9px white }
+}
+
+.test {
+  color: white;
 }
 
 

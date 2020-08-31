@@ -33,6 +33,10 @@ const App = () => {
       }  
     
   });
+
+  const handleBasketballButton =  () => {
+    console.log('sup');
+  }
   
   
   
@@ -40,20 +44,20 @@ const App = () => {
     <div> 
 
       <div className="basketball-container"> 
-      <img className="basketball" src={BasketballButton}/>
+      <img className="basketball" src={BasketballButton} onClick={handleBasketballButton} alt="click this basketball button get new matchup"/>
       </div>
       
     
       <div className="cards-container">
         
         
-        <PlayerCard >
-          {console.log(PlayerCard)}
+        <PlayerCard testClick = {handleBasketballButton} >
         
           </PlayerCard>
 
         <PlayerCard >
         
+         
         </PlayerCard>
         
         
