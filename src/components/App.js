@@ -8,10 +8,39 @@ import BasketballButton from "../assets/images/basketball-button.png";
 import PlayerCard from './PlayerCard';
 
 
-const App = () => {
+class App extends React.Component {
   
+  constructor(props) {
+    super(props)
+    console.log(this.props);
+    this.state = {
+        data: null //This is what our data will eventually be loaded into
+    };
 
-  d3.csv(importedCsvData).then(function(data) {
+    
+}
+
+loadData() {
+    setTimeout(()=> {
+      if(Images){
+        this.setState({
+          data: Images,
+      });
+      }
+        
+        
+    }, 100);
+    
+}
+
+componentDidMount() {  //this and loadData are to make sure all data loaded before rendering component in App
+    this.loadData(); 
+    
+}
+
+
+
+  ds3 = d3.csv(importedCsvData).then(function(data) {
     data.forEach(function(d) {
       d.Rk = + d.Rk;
       d.TRB = +d.TRB;
@@ -31,41 +60,50 @@ const App = () => {
           }
         }
       }  
-    
+   
   });
 
-  const handleBasketballButton =  () => {
-    console.log('sup');
+  handleBasketballButton =  () => {
+    this.setState({data: Images});
   }
   
   
+  render(){
+    if (!this.state.data) {
+      return <div>...loading</div>
+  }
   
-  return (
-    <div> 
+  
 
-      <div className="basketball-container"> 
-      <img className="basketball" src={BasketballButton} onClick={handleBasketballButton} alt="click this basketball button get new matchup"/>
-      </div>
+    return (
+      <div> 
+  
+        <div className="basketball-container"> 
+        <img className="basketball" src={BasketballButton} onClick={this.handleBasketballButton} alt="click this basketball button get a new matchup"/>
+        </div>
+        
       
-    
-      <div className="cards-container">
-        
-        
-        <PlayerCard testClick = {handleBasketballButton} >
-        
+        <div className="cards-container">
+          
+          
+        <PlayerCard data={this.state.data}>
+            <div>test</div>
+            
           </PlayerCard>
 
-        <PlayerCard >
+        <PlayerCard data={this.state.data}>
         
          
         </PlayerCard>
-        
-        
-        </div>
-
-    </div>
-    
-  )
+          
+          
+          </div>
+  
+      </div>
+      
+    )
+  }
+  
 }
 
 export default App;
