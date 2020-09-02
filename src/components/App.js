@@ -8,11 +8,11 @@ import BasketballButton from "../assets/images/basketball-button.png";
 import PlayerCard from './PlayerCard';
 
 
+
 class App extends React.Component {
   
   constructor(props) {
     super(props)
-    console.log(this.props);
     this.state = {
         data: null //This is what our data will eventually be loaded into
     };
@@ -34,8 +34,15 @@ loadData() {
 }
 
 componentDidMount() {  //this and loadData are to make sure all data loaded before rendering component in App
-    this.loadData(); 
-    
+  this.loadData(); 
+}
+
+handleBasketballButton =  () => {
+  this.setState({data: Images});
+}
+
+compareSiblings = () => {
+  console.log('sup');
 }
 
 
@@ -63,16 +70,27 @@ componentDidMount() {  //this and loadData are to make sure all data loaded befo
    
   });
 
-  handleBasketballButton =  () => {
-    this.setState({data: Images});
-  }
+  
   
   
   render(){
+    const random = Math.floor(Math.random() * Images.length); //this is to delay rendering until all data loads (Iages array merging with data in App)
+    const randomTwo = Math.floor(Math.random() * Images.length); //this is to delay rendering until all data loads (Iages array merging with data in App)
+
+
     if (!this.state.data) {
-      return <div>...loading</div>
+      return  <div className="loading-container" > 
+        {/* <img src={SpinningBball} className="loading-bball" /> */}
+        <p className="loading-text">Loading...</p>
+        
+      </div>
   }
-  
+
+   if(random === randomTwo) {
+     this.setState({ data: Images })
+   }
+
+    
   
 
     return (
@@ -86,16 +104,56 @@ componentDidMount() {  //this and loadData are to make sure all data loaded befo
         <div className="cards-container">
           
           
-        <PlayerCard data={this.state.data}>
-            <div>test</div>
-            
-          </PlayerCard>
+        <PlayerCard name="you"  >
+        
+               
+                
+                <div className="name-container">{this.state.data[random].Player}<span>{this.state.data[random].Season}</span></div>
+                <div className="player-image-container">
+                    <img className="player-image" src= {this.state.data[random].src} alt = {this.state.data[random].alt} />
+                </div>
+                <div className="stats">
+                    <p className="stats-paragraph left">PPG: {this.state.data[random].PTS}</p>
+                    <p className="stats-paragraph left">TSP: {((this.state.data[random].TSP) * 100 ).toFixed(1) }%</p>
+                    <p className="stats-paragraph left">APG: {this.state.data[random].AST}</p>
+                    <p className="stats-paragraph left">RPG: {this.state.data[random].TRB}</p>
 
-        <PlayerCard data={this.state.data}>
+                    <div className="stats-right-container">
+                    <p className="stats-paragraph right">BPG: {this.state.data[random].BLK}</p>
+                    <p className="stats-paragraph right">SPG: {this.state.data[random].STL}</p>
+                    <p className="stats-paragraph right">TPG: {this.state.data[random].TOV}</p>
+                    </div>
+                    
+                    
+                </div>
+            
+                </PlayerCard>
+
+
+
+        <PlayerCard name = "opponent" >
+        <div className="name-container">{this.state.data[randomTwo].Player}<span>{this.state.data[random].Season}</span></div>
+                <div className="player-image-container">
+                    <img className="player-image" src= {this.state.data[randomTwo].src} alt = {this.state.data[random].alt} />
+                </div>
+                <div className="stats">
+                    <p className="stats-paragraph left">PPG: {this.state.data[randomTwo].PTS}</p>
+                    <p className="stats-paragraph left">TSP: {((this.state.data[randomTwo].TSP) * 100 ).toFixed(1) }%</p>
+                    <p className="stats-paragraph left">APG: {this.state.data[randomTwo].AST}</p>
+                    <p className="stats-paragraph left">RPG: {this.state.data[randomTwo].TRB}</p>
+
+                    <div className="stats-right-container">
+                    <p className="stats-paragraph right">BPG: {this.state.data[randomTwo].BLK}</p>
+                    <p className="stats-paragraph right">SPG: {this.state.data[randomTwo].STL}</p>
+                    <p className="stats-paragraph right">TPG: {this.state.data[randomTwo].TOV}</p>
+                    </div>
+                    
+                    
+                </div>
         
          
         </PlayerCard>
-          
+  
           
           </div>
   
