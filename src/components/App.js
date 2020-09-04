@@ -7,48 +7,41 @@ import Images from'../Images';
 import BasketballButton from "../assets/images/basketball-button.png";
 import PlayerCard from './PlayerCard';
 
+// working on... 
+// 1. not having alert upon componentDidMount
+// 2. delaying stats etc from showing until playerCards render
+// 3. random comparison of stats 
 
 
 class App extends React.Component {
-  
+
   constructor(props) {
     super(props)
     this.state = {
-        data: null //This is what our data will eventually be loaded into
+        data: null,
+        hasMounted: false //This is what our data will eventually be loaded into
     };
-
     
 }
 
-loadData() {
-    setTimeout(()=> {
-      if(Images){
-        this.setState({
-          data: Images,
-      });
-      }
+// loadData() {
+//     setTimeout(()=> {
+//       if(Images[0].TSP){
+//         this.setState({
+//           data: Images,
+//       });
+//       }
         
         
-    }, 100);
+//     }, 100);
     
-}
+// }
 
-componentDidMount() {  //this and loadData are to make sure all data loaded before rendering component in App
-  this.loadData(); 
-}
-
-handleBasketballButton =  () => {
-  this.setState({data: Images});
-}
-
-compareSiblings = () => {
-  console.log('sup');
-}
-
-
-
-  ds3 = d3.csv(importedCsvData).then(function(data) {
+componentDidMount() { 
+  let self = this;
+  d3.csv(importedCsvData).then(function(data) {
     data.forEach(function(d) {
+
       d.Rk = + d.Rk;
       d.TRB = +d.TRB;
       d.AST = +d.AST;
@@ -67,53 +60,90 @@ compareSiblings = () => {
           }
         }
       }  
-   
-  });
+   self.setState({ data: Images, hasMounted: true });
+  //  console.log(self.state.data);
+  }); //this and loadData are to make sure all data loaded before rendering component in App
+  // this.loadData(); 
+  console.log('mounted');
+}
+
+handleBasketballButton =  () => {
+  this.setState({data: Images});
+}
+
+
+// compareSiblings = () => {
+  
+// }
+
+
+
+  
 
   
   
   
   render(){
-    const random = Math.floor(Math.random() * Images.length); //this is to delay rendering until all data loads (Iages array merging with data in App)
-    const randomTwo = Math.floor(Math.random() * Images.length); //this is to delay rendering until all data loads (Iages array merging with data in App)
+    console.log("app render");
+    const random = Math.floor(Math.random() * Images.length); 
+    const randomTwo = Math.floor(Math.random() * Images.length);
+    
+
+    // console.log(this.state.data);
+
+    if(random === randomTwo) {
+      this.setState({ data: Images })
+    } 
 
 
     if (!this.state.data) {
       return  <div className="loading-container" > 
-        {/* <img src={SpinningBball} className="loading-bball" /> */}
-        <p className="loading-text">Loading...</p>
-        
-      </div>
+                <p className="loading-text">Loading...</p>
+             </div>
   }
 
-   if(random === randomTwo) {
-     this.setState({ data: Images })
-   }
+  // while(this.state.hasMounted = true)
 
+  //  console.log(this.state.hasMounted); // wanna put this in player card ?
     
-  
+      if(this.state.data[random].PTS > this.state.data[randomTwo].PTS) {
+        alert('You win');
+      } else {
+        alert ("you lose")
+      }
+    
+    
+  //  let test =  () => {
+  //    if(this.hasMounted = true) {
+  //      console.log('test'); // do alert while component did mount = true?
+  //    }
+  //  }
+
+  //  test ();
+   
+
 
     return (
       <div> 
-  
+ 
         <div className="basketball-container"> 
-        <img className="basketball" src={BasketballButton} onClick={this.handleBasketballButton} alt="click this basketball button get a new matchup"/>
+        <img className="basketball" src={BasketballButton} onClick={this.handleBasketballButton } alt="click this basketball button to get a new matchup"/>
         </div>
         
       
         <div className="cards-container">
           
           
-        <PlayerCard name="you"  >
+        <PlayerCard name="you" onRender={this.test} >
         
                
                 
-                <div className="name-container">{this.state.data[random].Player}<span>{this.state.data[random].Season}</span></div>
+                <div className="name-container">{console.log(this.state.data[random].Player)}<span>{this.state.data[random].Season}</span></div>
                 <div className="player-image-container">
                     <img className="player-image" src= {this.state.data[random].src} alt = {this.state.data[random].alt} />
                 </div>
                 <div className="stats">
-                    <p className="stats-paragraph left">PPG: {this.state.data[random].PTS}</p>
+                    <p className="stats-paragraph left" id="PPG-left">PPG: {this.state.data[random].PTS}</p>
                     <p className="stats-paragraph left">TSP: {((this.state.data[random].TSP) * 100 ).toFixed(1) }%</p>
                     <p className="stats-paragraph left">APG: {this.state.data[random].AST}</p>
                     <p className="stats-paragraph left">RPG: {this.state.data[random].TRB}</p>
@@ -131,13 +161,13 @@ compareSiblings = () => {
 
 
 
-        <PlayerCard name = "opponent" >
-        <div className="name-container">{this.state.data[randomTwo].Player}<span>{this.state.data[random].Season}</span></div>
+        <PlayerCard name = "opponent" onRender={this.test} >
+        <div className="name-container">{console.log(this.state.data[randomTwo].Player)}<span>{this.state.data[randomTwo].Season}</span></div>
                 <div className="player-image-container">
-                    <img className="player-image" src= {this.state.data[randomTwo].src} alt = {this.state.data[random].alt} />
+                    <img className="player-image" src= {this.state.data[randomTwo].src} alt = {this.state.data[randomTwo].alt} />
                 </div>
                 <div className="stats">
-                    <p className="stats-paragraph left">PPG: {this.state.data[randomTwo].PTS}</p>
+                    <p className="stats-paragraph left" id="PPG-right">PPG: {this.state.data[randomTwo].PTS}</p>
                     <p className="stats-paragraph left">TSP: {((this.state.data[randomTwo].TSP) * 100 ).toFixed(1) }%</p>
                     <p className="stats-paragraph left">APG: {this.state.data[randomTwo].AST}</p>
                     <p className="stats-paragraph left">RPG: {this.state.data[randomTwo].TRB}</p>
@@ -158,6 +188,7 @@ compareSiblings = () => {
           </div>
   
       </div>
+      
       
     )
   }

@@ -15,11 +15,13 @@ class PlayerCard extends React.Component {
     
          
     render(){
+        console.log("PlayerCard render");
+        
         // console.log(this.props.data);
         // if (this.props.data.TSP === undefined) {
         //     return <div/>
         // }
-        console.log(this.props.children);
+        // console.log(this.props.children);
         return (
             
          
@@ -27,12 +29,18 @@ class PlayerCard extends React.Component {
                 <img className="MTG-card" src={MTGCard} alt="player card"/>
                 
         <div>{this.props.children}</div>
-            
+            {console.log(this.props)}
                 
         
             </div>
             );
         };
+
+        componentDidMount () {
+            console.log('ChildDiv did mount')
+            // this.props.onRender() // tell parent that child did mount
+            console.log(this.props);
+          }
     }
     
 
