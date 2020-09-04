@@ -11,11 +11,48 @@ class PlayerCard extends React.Component {
     
     // constructor(props) {
     //     super(props)
+        
+        
     // }
+
+    // if(random.PTS > this.state.data[randomTwo].PTS) {
+    //     alert('You win');
+    //   } else {
+    //     alert ("you lose")
+    //   }
+    componentDidMount () {
+        console.log('ChildDiv did mount');
+        
+      }
+
+    componentDidUpdate() {
+        console.log('updated');
+        const random = this.props.random;
+        const randomTwo = this.props.randomTwo;
+        // console.log(random, randomTwo);
+        if(random != undefined && randomTwo != undefined){
+            console.log(random.PTS, randomTwo.PTS);
+            if(random.PTS > randomTwo.PTS) {
+                alert("winer");
+            } else {
+                alert("loser");
+            }
+        }
+    }
+
+    
     
          
     render(){
         console.log("PlayerCard render");
+
+        //experimenting below, might be on to something here 
+
+        
+        
+        // console.log(this.props.randomTwo);
+
+        //---------end experiment
         
         // console.log(this.props.data);
         // if (this.props.data.TSP === undefined) {
@@ -36,11 +73,6 @@ class PlayerCard extends React.Component {
             );
         };
 
-        componentDidMount () {
-            console.log('ChildDiv did mount')
-            // this.props.onRender() // tell parent that child did mount
-            console.log(this.props);
-          }
     }
     
 

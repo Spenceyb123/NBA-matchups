@@ -16,26 +16,14 @@ import PlayerCard from './PlayerCard';
 class App extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
+    
     this.state = {
         data: null,
         hasMounted: false //This is what our data will eventually be loaded into
     };
-    
+    // console.log(this.state.hasMounted);
 }
-
-// loadData() {
-//     setTimeout(()=> {
-//       if(Images[0].TSP){
-//         this.setState({
-//           data: Images,
-//       });
-//       }
-        
-        
-//     }, 100);
-    
-// }
 
 componentDidMount() { 
   let self = this;
@@ -60,23 +48,40 @@ componentDidMount() {
           }
         }
       }  
-   self.setState({ data: Images, hasMounted: true });
-  //  console.log(self.state.data);
-  }); //this and loadData are to make sure all data loaded before rendering component in App
-  // this.loadData(); 
+
+   self.setState({ data: Images });
+
+  }); 
   console.log('mounted');
 }
+
+
+
+// componentDidUpdate(prevProps, prevState) {
+//   if (prevProps !== this.props) {
+    
+//     console.log('pokemons state has changed.')
+//   }
+// }
+
 
 handleBasketballButton =  () => {
   this.setState({data: Images});
 }
+
+// handleMount = () => {
+//   if(!this.state.hasMounted){
+//     this.setState({ hasMounted: true })
+//     console.log(this.state.hasMounted);
+//   }
+// }
 
 
 // compareSiblings = () => {
   
 // }
 
-
+// self.setState({ hasMounted: true });
 
   
 
@@ -91,26 +96,56 @@ handleBasketballButton =  () => {
 
     // console.log(this.state.data);
 
-    if(random === randomTwo) {
+    if(random === randomTwo) { // i don't think this is working quite like I hope yet
       this.setState({ data: Images })
     } 
+    
 
 
     if (!this.state.data) {
-      return  <div className="loading-container" > 
+      return  <div className="loading-container" id="test"> 
                 <p className="loading-text">Loading...</p>
              </div>
   }
+
+  // const test = document.getElementById("test");
+  
+
+  const handleMount = (callback) => {
+    if(!this.state.hasMounted){
+      this.setState({ hasMounted: true })
+      callback();      
+    }
+  }
+
+  // const test = () => {
+  //   console.log(this.state.hasMounted);
+  //   if(this.state.hasMounted && this.state.data[random].PTS > this.state.data[randomTwo].PTS) {
+  //     console.log(this.state.data[random].PTS, this.state.data[randomTwo].PTS ) //gotta figure this shit out 
+  //     alert('You win');
+  //   } else {
+  //     alert ("you lose")
+  //   }
+  // }
+
+  // if(this.state.hasMounted && this.state.data[random].PTS > this.state.data[randomTwo].PTS) {
+  //   console.log(this.state.data[random].PTS, this.state.data[randomTwo].PTS ) //gotta figure this shit out 
+  //   alert('You win');
+  // } else {
+  //   alert ("you lose")
+  // }
+
+
 
   // while(this.state.hasMounted = true)
 
   //  console.log(this.state.hasMounted); // wanna put this in player card ?
     
-      if(this.state.data[random].PTS > this.state.data[randomTwo].PTS) {
-        alert('You win');
-      } else {
-        alert ("you lose")
-      }
+      // if(this.children = true && this.state.data[random].PTS > this.state.data[randomTwo].PTS) {
+      //   alert('You win');
+      // } else {
+      //   alert ("you lose")
+      // }
     
     
   //  let test =  () => {
@@ -121,11 +156,12 @@ handleBasketballButton =  () => {
 
   //  test ();
    
-
+ let testOne = "hello wolrd";
+  
 
     return (
-      <div> 
- 
+      <div > 
+ {/* { console.log(document.contains(test))} */}
         <div className="basketball-container"> 
         <img className="basketball" src={BasketballButton} onClick={this.handleBasketballButton } alt="click this basketball button to get a new matchup"/>
         </div>
@@ -134,7 +170,7 @@ handleBasketballButton =  () => {
         <div className="cards-container">
           
           
-        <PlayerCard name="you" onRender={this.test} >
+        <PlayerCard name="you"  >
         
                
                 
@@ -161,7 +197,9 @@ handleBasketballButton =  () => {
 
 
 
-        <PlayerCard name = "opponent" onRender={this.test} >
+        <PlayerCard name = "opponent" randomTwo={this.state.data[randomTwo]} random={this.state.data[random]} > 
+      {/* {console.log(this.state.hasMounted)} */}
+
         <div className="name-container">{console.log(this.state.data[randomTwo].Player)}<span>{this.state.data[randomTwo].Season}</span></div>
                 <div className="player-image-container">
                     <img className="player-image" src= {this.state.data[randomTwo].src} alt = {this.state.data[randomTwo].alt} />
@@ -180,18 +218,21 @@ handleBasketballButton =  () => {
                     
                     
                 </div>
-        
+      
          
-        </PlayerCard>
-  
+        </PlayerCard >
+     
           
           </div>
-  
+       
       </div>
       
       
     )
+    
+    
   }
+  
   
 }
 
