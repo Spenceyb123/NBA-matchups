@@ -111,12 +111,12 @@ handleBasketballButton =  () => {
   // const test = document.getElementById("test");
   
 
-  const handleMount = (callback) => {
-    if(!this.state.hasMounted){
-      this.setState({ hasMounted: true })
-      callback();      
-    }
-  }
+  // const handleMount = (callback) => {
+  //   if(!this.state.hasMounted){
+  //     this.setState({ hasMounted: true })
+  //     callback();      
+  //   }
+  // }
 
   // const test = () => {
   //   console.log(this.state.hasMounted);

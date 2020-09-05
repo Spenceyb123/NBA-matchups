@@ -26,15 +26,45 @@ class PlayerCard extends React.Component {
       }
 
     componentDidUpdate() {
+        // putting all the below in here so that no alert upon App rnder when cards not even showing 
         console.log('updated');
         const random = this.props.random;
         const randomTwo = this.props.randomTwo;
-        // console.log(random, randomTwo);
-        if(random != undefined && randomTwo != undefined){
-            console.log(random.PTS, randomTwo.PTS);
-            if(random.PTS > randomTwo.PTS) {
+     
+        if(random != undefined || randomTwo && randomTwo != undefined){
+            
+            const statsArrayRandom = [];
+            const randomPPG = random.PTS;
+            const randomTSP = random.TSP;
+            const randomAPG = random.AST;
+            const randomRPG = random.TRB;
+            const randomBPG = random.BLK;
+            const randomSPG = random.STL;
+            const randomTPG = random.TOV;
+            statsArrayRandom.push(randomPPG, randomTSP, randomAPG, randomRPG, randomBPG, randomSPG, randomTPG);
+
+            const statsArrayRandomTwo = [];
+            const randomTwoPPG = randomTwo.PTS;
+            const randomTwoTSP = randomTwo.TSP;
+            const randomTwoAPG = randomTwo.AST;
+            const randomTwoRPG = randomTwo.TRB;
+            const randomTwoBPG = randomTwo.BLK;
+            const randomTwoSPG = randomTwo.STL;
+            const randomTwoTPG = randomTwo.TOV;
+            statsArrayRandomTwo.push(randomTwoPPG, randomTwoTSP, randomTwoAPG, randomTwoRPG, randomTwoBPG, randomTwoSPG, randomTwoTPG);
+
+            const randomStat = Math.floor(Math.random() * statsArrayRandom.length);
+            console.log(randomStat);
+            console.log(statsArrayRandom, statsArrayRandomTwo);
+
+            if(randomStat != 6 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                console.log(statsArrayRandom[randomStat], statsArrayRandomTwo[randomStat] )
                 alert("winer");
+            } else if (randomStat == 6 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]){
+                console.log(statsArrayRandom[randomStat], statsArrayRandomTwo[randomStat] )
+                alert("winner");
             } else {
+                console.log(statsArrayRandom[randomStat], statsArrayRandomTwo[randomStat] )
                 alert("loser");
             }
         }
