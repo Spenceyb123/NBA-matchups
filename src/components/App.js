@@ -8,9 +8,10 @@ import BasketballButton from "../assets/images/basketball-button.png";
 import PlayerCard from './PlayerCard';
 
 // working on... 
-// 1. not having alert upon componentDidMount
-// 2. delaying stats etc from showing until playerCards render
-// 3. random comparison of stats 
+// 1. add unique alert for stat comparisons
+// 2. get scorebard working * add state count to playerCard???
+// 3. delaying stats etc from showing until playerCards render(?)
+
 
 
 class App extends React.Component {

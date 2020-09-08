@@ -31,7 +31,7 @@ class PlayerCard extends React.Component {
         const random = this.props.random;
         const randomTwo = this.props.randomTwo;
      
-        if(random != undefined || randomTwo && randomTwo != undefined){
+        if(random != undefined || randomTwo != undefined){
             
             const statsArrayRandom = [];
             const randomPPG = random.PTS;
