@@ -1,5 +1,5 @@
 import React from 'react';
-// import $ from 'jquery';
+import $ from 'jquery';
 import './PlayerCard.css';
 import MTGCard from "../assets/images/mtg-card.png";
 
@@ -57,16 +57,46 @@ class PlayerCard extends React.Component {
             console.log(randomStat);
             console.log(statsArrayRandom, statsArrayRandomTwo);
 
-            if(randomStat != 6 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
-                console.log(statsArrayRandom[randomStat], statsArrayRandomTwo[randomStat] )
-                alert("winer");
-            } else if (randomStat == 6 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]){
-                console.log(statsArrayRandom[randomStat], statsArrayRandomTwo[randomStat] )
-                alert("winner");
-            } else {
-                console.log(statsArrayRandom[randomStat], statsArrayRandomTwo[randomStat] )
-                alert("loser");
+            if(randomStat === 0 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                alert(random.Player + " gets by " + randomTwo.Player + " for the bucket!");
+            } else if (randomStat === 0 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                alert(randomTwo.Player + " gets by " + random.Player + " for the bucket!");
+            } else if (randomStat === 1 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                alert(random.Player + " is money!");
+            } else if (randomStat === 1 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                alert(randomTwo.Player + " is money!");
+            } else if (randomStat === 2 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                alert(random.Player + " makes " + randomTwo.Player + "'s head spin with the dime!");
+            } else if (randomStat === 2 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                alert(randomTwo.Player + " makes " + random.Player + "'s head spin with the dime!");
+            } else if (randomStat === 3 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                alert(random.Player + " secures the rebound!");
+            } else if (randomStat === 3 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                alert(randomTwo.Player + " secures the rebound!");
+            } else if (randomStat === 4 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                alert(random.Player + " swats " + randomTwo.Player + "!");
+            } else if (randomStat === 4 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                alert(randomTwo.Player + " swats " + random.Player + "!");
+            } else if (randomStat === 5 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                alert(random.Player + " picks " + randomTwo.Player + "'s pocket!");
+            } else if (randomStat === 5 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                alert(randomTwo.Player + " picks " + random.Player + "'s pocket!");
+            } else if (randomStat === 6 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                alert(randomTwo.Player + " turns the ball over... that's embarrassing");
+            } else if (randomStat === 6 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                alert(random.Player + " turns the ball over... that's embarrassing");
             }
+
+            // if(randomStat != 6 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+            //     console.log(statsArrayRandom[randomStat], statsArrayRandomTwo[randomStat] )
+            //     alert(random.Player);
+            // } else if (randomStat == 6 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]){
+            //     console.log(statsArrayRandom[randomStat], statsArrayRandomTwo[randomStat] )
+            //     alert("winner");
+            // } else {
+            //     console.log(statsArrayRandom[randomStat], statsArrayRandomTwo[randomStat] )
+            //     alert("loser");
+            // }
         }
     }
 
