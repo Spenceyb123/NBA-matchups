@@ -3,9 +3,7 @@ import $ from 'jquery';
 import './PlayerCard.css';
 import MTGCard from "../assets/images/mtg-card.png";
 
-
-
-
+console.log($(".cards-container"));
 class PlayerCard extends React.Component {
 
     
@@ -15,23 +13,64 @@ class PlayerCard extends React.Component {
         
     // }
 
-    // if(random.PTS > this.state.data[randomTwo].PTS) {
-    //     alert('You win');
-    //   } else {
-    //     alert ("you lose")
-    //   }
+
+
+
     componentDidMount () {
         console.log('ChildDiv did mount');
         
       }
 
     componentDidUpdate() {
+        
+// override default browser alert
+window.alert = function(msg){
+
+  $('.message').text(msg);
+  $('.customAlert').css('animation', 'fadeIn 0.3s linear');
+  $('.customAlert').css('display', 'inline');
+  setTimeout(function(){
+    $('.customAlert').css('animation', 'none');
+  }, 300);
+}
+
+$(function(e){
+    // add listener for when enter button pressed (had to make focus on window so that enter recognized from anywhere, and not just if alert focused on)
+    $(window).focus().keypress(function(e){
+        if(e.charCode === 13) {
+            $('.customAlert').css('animation', 'fadeOut 0.3s linear');
+    
+        
+        
+        setTimeout(function(){
+         $('.customAlert').css('animation', 'none');
+            $('.customAlert').css('display', 'none');
+        }, 300);
+        }
+    
+      })
+  // add listener for when our confirmation button is clicked
+  
+	$('.confirmButton').click(function(){
+    $('.customAlert').css('animation', 'fadeOut 0.3s linear');
+
+    
+    
+    setTimeout(function(){
+     $('.customAlert').css('animation', 'none');
+		$('.customAlert').css('display', 'none');
+    }, 300);
+  })
+
+});
+
+
         // putting all the below in here so that no alert upon App rnder when cards not even showing 
         console.log('updated');
         const random = this.props.random;
         const randomTwo = this.props.randomTwo;
      
-        if(random != undefined || randomTwo != undefined){
+        if(random !== undefined || randomTwo !== undefined){
             
             const statsArrayRandom = [];
             const randomPPG = random.PTS;
@@ -54,7 +93,7 @@ class PlayerCard extends React.Component {
             statsArrayRandomTwo.push(randomTwoPPG, randomTwoTSP, randomTwoAPG, randomTwoRPG, randomTwoBPG, randomTwoSPG, randomTwoTPG);
 
             const randomStat = Math.floor(Math.random() * statsArrayRandom.length);
-            console.log(randomStat);
+            
             console.log(statsArrayRandom, statsArrayRandomTwo);
 
             if(randomStat === 0 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
@@ -87,18 +126,31 @@ class PlayerCard extends React.Component {
                 alert(random.Player + " turns the ball over... that's embarrassing");
             }
 
-            // if(randomStat != 6 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
-            //     console.log(statsArrayRandom[randomStat], statsArrayRandomTwo[randomStat] )
-            //     alert(random.Player);
-            // } else if (randomStat == 6 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]){
-            //     console.log(statsArrayRandom[randomStat], statsArrayRandomTwo[randomStat] )
-            //     alert("winner");
-            // } else {
-            //     console.log(statsArrayRandom[randomStat], statsArrayRandomTwo[randomStat] )
-            //     alert("loser");
-            // }
         }
     }
+
+    // handleKeyPress(e){
+    //     $(".cards-container").focus();
+
+    //     if($(".cards-container").focus() && e.charCode === 13) {
+    //         $(".confirmButton").click();           
+    //     }
+    //     // $(".customAlert").hasFocus();
+    //     // let test = !document.hasFocus();
+    //     // console.log(test);
+    //     // window.body.focus();
+    //     console.log(window);
+    //     console.log(e.charCode);  //gotta get this shit working...._+-_______________-----------------!!!!
+    //     // e.stopPropagation();
+        
+    // };
+        // document.addEventListener('click',function(e){
+        //     if(e.charCode === 13) {
+        //         console.log('hi');
+        //         $(".confirmButton").click();
+        //     }; 
+        // });
+    
 
     
     
@@ -106,33 +158,30 @@ class PlayerCard extends React.Component {
     render(){
         console.log("PlayerCard render");
 
-        //experimenting below, might be on to something here 
-
-        
-        
-        // console.log(this.props.randomTwo);
-
-        //---------end experiment
-        
-        // console.log(this.props.data);
-        // if (this.props.data.TSP === undefined) {
-        //     return <div/>
-        // }
-        // console.log(this.props.children);
+       
         return (
-            
+            <div>
          
             <div className="mtg-card-container">
                 <img className="MTG-card" src={MTGCard} alt="player card"/>
                 
         <div>{this.props.children}</div>
-            {console.log(this.props)}
+           
                 
         
             </div>
+
+<div className='customAlert'  >
+<p className='message'></p>
+  <input type='button' className='confirmButton' value='Ok' />
+</div>
+
+
+</div>
+
             );
         };
-
+ 
     }
     
 

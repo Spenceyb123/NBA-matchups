@@ -8,9 +8,9 @@ import BasketballButton from "../assets/images/basketball-button.png";
 import PlayerCard from './PlayerCard';
 
 // working on... 
-// 1. add unique alert for stat comparisons
+// 1. add custom alert styling for stats comparisons on stats themselves 
 // 2. get scorebard working * add state count to playerCard???
-// 3. delaying stats etc from showing until playerCards render(?)
+// 3. delaying stats alert until animation (needs done) shows comparing stats etc. 
 
 
 
@@ -109,55 +109,7 @@ handleBasketballButton =  () => {
              </div>
   }
 
-  // const test = document.getElementById("test");
-  
 
-  // const handleMount = (callback) => {
-  //   if(!this.state.hasMounted){
-  //     this.setState({ hasMounted: true })
-  //     callback();      
-  //   }
-  // }
-
-  // const test = () => {
-  //   console.log(this.state.hasMounted);
-  //   if(this.state.hasMounted && this.state.data[random].PTS > this.state.data[randomTwo].PTS) {
-  //     console.log(this.state.data[random].PTS, this.state.data[randomTwo].PTS ) //gotta figure this shit out 
-  //     alert('You win');
-  //   } else {
-  //     alert ("you lose")
-  //   }
-  // }
-
-  // if(this.state.hasMounted && this.state.data[random].PTS > this.state.data[randomTwo].PTS) {
-  //   console.log(this.state.data[random].PTS, this.state.data[randomTwo].PTS ) //gotta figure this shit out 
-  //   alert('You win');
-  // } else {
-  //   alert ("you lose")
-  // }
-
-
-
-  // while(this.state.hasMounted = true)
-
-  //  console.log(this.state.hasMounted); // wanna put this in player card ?
-    
-      // if(this.children = true && this.state.data[random].PTS > this.state.data[randomTwo].PTS) {
-      //   alert('You win');
-      // } else {
-      //   alert ("you lose")
-      // }
-    
-    
-  //  let test =  () => {
-  //    if(this.hasMounted = true) {
-  //      console.log('test'); // do alert while component did mount = true?
-  //    }
-  //  }
-
-  //  test ();
-   
- let testOne = "hello wolrd";
   
 
     return (
@@ -168,14 +120,14 @@ handleBasketballButton =  () => {
         </div>
         
       
-        <div className="cards-container">
+        <div className="cards-container" tabIndex= "-1">
           
           
         <PlayerCard name="you"  >
         
                
                 
-                <div className="name-container">{console.log(this.state.data[random].Player)}<span>{this.state.data[random].Season}</span></div>
+                <div className="name-container">{this.state.data[random].Player}<span>{this.state.data[random].Season}</span></div>
                 <div className="player-image-container">
                     <img className="player-image" src= {this.state.data[random].src} alt = {this.state.data[random].alt} />
                 </div>
@@ -201,7 +153,7 @@ handleBasketballButton =  () => {
         <PlayerCard name = "opponent" randomTwo={this.state.data[randomTwo]} random={this.state.data[random]} > 
       {/* {console.log(this.state.hasMounted)} */}
 
-        <div className="name-container">{console.log(this.state.data[randomTwo].Player)}<span>{this.state.data[randomTwo].Season}</span></div>
+        <div className="name-container">{this.state.data[randomTwo].Player}<span>{this.state.data[randomTwo].Season}</span></div>
                 <div className="player-image-container">
                     <img className="player-image" src= {this.state.data[randomTwo].src} alt = {this.state.data[randomTwo].alt} />
                 </div>

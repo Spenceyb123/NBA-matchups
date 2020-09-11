@@ -8,3 +8,71 @@
 .MTG-card {
  height: 100%;
 }
+
+/* @import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+
+body{
+  background: darken(#04B486, 30%);
+  font-family: 'Noto Sans', 'Helvetica';
+} */
+
+.customAlert{
+	
+  display: none;
+  position: fixed;
+  max-width: 200px;
+  min-width: 250px !important;
+  min-height: 20%;
+  height: 200px;
+  left: 54%;
+  top: 40%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-left: -12.5%;
+  margin-top: -5.2%;
+  background-image: url(../assets/images/arena-monitor.jpg);
+  color: white;
+  text-align: center;
+  font-size: 1.5rem;
+  border: 4px solid white;
+}
+  
+  /* @media all and (max-width: 1300px){
+    .message{
+      font-size: 14px !important;
+    }
+    input[type='button']{
+      height: 15% !important;
+    }
+  } */
+  
+  /* .message{
+    padding: 5px;
+    color: white;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: justify;
+  } */
+    
+  /* .confirmButton {
+    margin-top: 3rem;
+  } */
+ 
+      
+@keyframes fadeOut{
+	from{
+  	opacity: 1;
+  } 
+  to{
+    opacity: 0;
+  }
+}
+    
+@keyframes fadeIn{
+	from{
+  	opacity: 0;
+  } 
+  to{
+    opacity: 1;
+  }
+}
