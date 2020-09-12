@@ -31,14 +31,21 @@
   background-size: cover;
   color: white;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-family: Codystar;
   font-weight: bolder;
   /* border: 3px red solid; */
   /* box-shadow: 10px 15px 10px -15px #111;  */
 }
+
+.message {
+  margin-top: 53px;
+  max-width: 225px;
+  position: absolute;
+  left: 23.5%;
+}
   
-  /* @media all and (max-width: 1300px){
+  /* @media all and (max-width: 1300px){ this stuff came with the customAlert 
     .message{
       font-size: 14px !important;
     }
@@ -55,9 +62,20 @@
     text-align: justify;
   } */
     
-  /* .confirmButton {
-    margin-top: 3rem;
-  } */
+  .confirmButton {
+    /* margin-top: 3rem; */
+    position: absolute;
+    left: 17.5%;
+    top: 71.5%;
+    background: none;
+    color: white;
+    font-family: Codystar;
+    font-weight: bolder;
+    font-size: 1.25rem;
+    color: tomato;
+    padding: .3em 6.5em;
+    border: none;
+  }
  
       
 @keyframes fadeOut{
