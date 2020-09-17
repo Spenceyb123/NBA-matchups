@@ -172,8 +172,11 @@ $(function(e){
             </div>
 
 <div className='customAlert'  >
-<p className='message'></p>
-  <input type='button' className='confirmButton' value='Ok' />
+    <div className="message-container"> 
+         <p className='message'></p>  
+    </div>
+
+  <input type='button' className='confirmButton'  />
 </div>
 
 

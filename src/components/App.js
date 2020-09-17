@@ -8,7 +8,7 @@ import BasketballButton from "../assets/images/basketball-button.png";
 import PlayerCard from './PlayerCard';
 
 // working on... 
-// 1. add custom alert styling for stats comparisons on stats themselves 
+
 // 2. get scorebard working * add state count to playerCard???
 // 3. delaying stats alert until animation (needs done) shows comparing stats etc. 
 
