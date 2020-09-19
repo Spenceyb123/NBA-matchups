@@ -103,7 +103,23 @@ span {
 .stats-paragraph {
   margin: 13px 15px;
   margin-left: 25px;
-  width: 40%;
+  width: 30%;
+  
+}
+
+.animation {
+  background-color: gold;
+  border: dotted 1px black;
+  animation: blinkingBackground 2s;
+  animation-iteration-count: 2;
+}
+
+@keyframes blinkingBackground{
+  0%		{ background-color: gold;}
+  25%		{ background-color: transparent;}
+  50%		{ background-color: gold;}
+  75%		{ background-color: transparent;}
+  100%	        { background-color: gold;}
 }
 
 .stats-right-container {
@@ -115,8 +131,6 @@ span {
 }
 
 .stats-paragraph.right {
-  width: 100%;
-  padding-left: 25px;
+  width: 50%;
+  margin-left: 50px;
 }
-
-

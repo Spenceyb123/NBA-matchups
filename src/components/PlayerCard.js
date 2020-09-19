@@ -3,7 +3,7 @@ import $ from 'jquery';
 import './PlayerCard.css';
 import MTGCard from "../assets/images/mtg-card.png";
 
-console.log($(".cards-container"));
+
 class PlayerCard extends React.Component {
 
     
@@ -18,7 +18,7 @@ class PlayerCard extends React.Component {
 
     componentDidMount () {
         console.log('ChildDiv did mount');
-        
+        console.log(this.props.children[2].props.children[2].props.className);
       }
 
     componentDidUpdate() {
@@ -39,7 +39,15 @@ $(function(e){
     $(window).focus().keypress(function(e){
         if(e.charCode === 13) {
             $('.customAlert').css('animation', 'fadeOut 0.3s linear');
-    
+            // experimenting with animation and getting it to go away 
+            let statsParagraphElements = document.querySelectorAll(".stats-paragraph");
+
+            (function _removeClasses() {
+                for (var i = 0; i < statsParagraphElements.length; i++) {
+                  statsParagraphElements[i].classList.remove('animation')
+                }
+              }());
+            //was able to do it with above(?)
         
         
         setTimeout(function(){
@@ -54,7 +62,13 @@ $(function(e){
 	$('.confirmButton').click(function(){
     $('.customAlert').css('animation', 'fadeOut 0.3s linear');
 
-    
+    let statsParagraphElements = document.querySelectorAll(".stats-paragraph");
+
+            (function _removeClasses() {
+                for (var i = 0; i < statsParagraphElements.length; i++) {
+                  statsParagraphElements[i].classList.remove('animation')
+                }
+              }());
     
     setTimeout(function(){
      $('.customAlert').css('animation', 'none');
@@ -67,6 +81,7 @@ $(function(e){
 
         // putting all the below in here so that no alert upon App rnder when cards not even showing 
         console.log('updated');
+        // console.log(this.props.children[2].props.children[0]); // working on this shit 
         const random = this.props.random;
         const randomTwo = this.props.randomTwo;
      
@@ -94,65 +109,156 @@ $(function(e){
 
             const randomStat = Math.floor(Math.random() * statsArrayRandom.length);
             
-            console.log(statsArrayRandom, statsArrayRandomTwo);
+            // console.log(statsArrayRandom, statsArrayRandomTwo);
+           
 
             if(randomStat === 0 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                (() => {
+                
+                    let ppg =  document.getElementsByClassName(this.props.children[2].props.children[0].props.className);
+                 
+                    for (const p of ppg) {
+                        p.classList.add("animation");
+                      }
+                })();
+                
                 alert(random.Player + " gets by " + randomTwo.Player + " for the bucket!");
             } else if (randomStat === 0 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    
+                    let ppg =  document.getElementsByClassName(this.props.children[2].props.children[0].props.className);
+          
+                    for (const p of ppg) {
+                        p.classList.add("animation");
+                      }
+
+                      
+                })();
                 alert(randomTwo.Player + " gets by " + random.Player + " for the bucket!");
             } else if (randomStat === 1 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[1].props.className);
+                    //started keeping variable names same when copying and pastying since local scope 
+                    for (const t of tsp) {
+                        t.classList.add("animation");
+                      }
+                    
+                })();
                 alert(random.Player + " is money!");
             } else if (randomStat === 1 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[1].props.className);
+                    
+                    for (const t of tsp) {
+                        t.classList.add("animation");
+                      }
+                    
+                })();
                 alert(randomTwo.Player + " is money!");
             } else if (randomStat === 2 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[2].props.className);
+                    
+                    for (const t of tsp) {
+                        t.classList.add("animation");
+                      }
+                    
+                })();
                 alert(random.Player + " makes " + randomTwo.Player + "'s head spin with the dime!");
             } else if (randomStat === 2 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[2].props.className);
+                    
+                    for (const t of tsp) {
+                        t.classList.add("animation");
+                      }
+                    
+                })();
                 alert(randomTwo.Player + " makes " + random.Player + "'s head spin with the dime!");
             } else if (randomStat === 3 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[3].props.className);
+                    
+                    for (const t of tsp) {
+                        t.classList.add("animation");
+                      }
+                    
+                })();
                 alert(random.Player + " secures the rebound!");
             } else if (randomStat === 3 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[3].props.className);
+                    
+                    for (const t of tsp) {
+                        t.classList.add("animation");
+                      }
+                    
+                })();
                 alert(randomTwo.Player + " secures the rebound!");
             } else if (randomStat === 4 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[0].props.className);
+                    
+                    for (const b of bpg) {
+                        b.classList.add("animation");
+                      }
+                    
+                })();
                 alert(random.Player + " swats " + randomTwo.Player + "!");
             } else if (randomStat === 4 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[0].props.className);
+
+                    for (const b of bpg) {
+                        b.classList.add("animation");
+                      }
+                    
+                })();
                 alert(randomTwo.Player + " swats " + random.Player + "!");
             } else if (randomStat === 5 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[1].props.className);
+
+                    for (const b of bpg) {
+                        b.classList.add("animation");
+                      }
+                    
+                })();
                 alert(random.Player + " picks " + randomTwo.Player + "'s pocket!");
             } else if (randomStat === 5 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[1].props.className);
+
+                    for (const b of bpg) {
+                        b.classList.add("animation");
+                      }
+                    
+                })();
                 alert(randomTwo.Player + " picks " + random.Player + "'s pocket!");
             } else if (randomStat === 6 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[2].props.className);
+
+                    for (const b of bpg) {
+                        b.classList.add("animation");
+                      }
+                    
+                })();
                 alert(randomTwo.Player + " turns the ball over... that's embarrassing");
             } else if (randomStat === 6 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[2].props.className);
+
+                    for (const b of bpg) {
+                        b.classList.add("animation");
+                      }
+                    
+                })();
                 alert(random.Player + " turns the ball over... that's embarrassing");
             }
 
         }
     }
-
-    // handleKeyPress(e){
-    //     $(".cards-container").focus();
-
-    //     if($(".cards-container").focus() && e.charCode === 13) {
-    //         $(".confirmButton").click();           
-    //     }
-    //     // $(".customAlert").hasFocus();
-    //     // let test = !document.hasFocus();
-    //     // console.log(test);
-    //     // window.body.focus();
-    //     console.log(window);
-    //     console.log(e.charCode);  //gotta get this shit working...._+-_______________-----------------!!!!
-    //     // e.stopPropagation();
-        
-    // };
-        // document.addEventListener('click',function(e){
-        //     if(e.charCode === 13) {
-        //         console.log('hi');
-        //         $(".confirmButton").click();
-        //     }; 
-        // });
-    
-
-    
     
          
     render(){

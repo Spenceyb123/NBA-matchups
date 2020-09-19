@@ -15,7 +15,6 @@ import PlayerCard from './PlayerCard';
 
 
 class App extends React.Component {
-
   constructor(props) {
     super(props);
     
@@ -27,6 +26,7 @@ class App extends React.Component {
 }
 
 componentDidMount() { 
+
   let self = this;
   d3.csv(importedCsvData).then(function(data) {
     data.forEach(function(d) {
@@ -132,15 +132,15 @@ handleBasketballButton =  () => {
                     <img className="player-image" src= {this.state.data[random].src} alt = {this.state.data[random].alt} />
                 </div>
                 <div className="stats">
-                    <p className="stats-paragraph left" id="PPG-left">PPG: {this.state.data[random].PTS}</p>
-                    <p className="stats-paragraph left">TSP: {((this.state.data[random].TSP) * 100 ).toFixed(1) }%</p>
-                    <p className="stats-paragraph left">APG: {this.state.data[random].AST}</p>
-                    <p className="stats-paragraph left">RPG: {this.state.data[random].TRB}</p>
+                    <p className="stats-paragraph left PPG" >PPG: {this.state.data[random].PTS}</p>
+                    <p className="stats-paragraph left TSP">TSP: {((this.state.data[random].TSP) * 100 ).toFixed(1) }%</p>
+                    <p className="stats-paragraph left APG">APG: {this.state.data[random].AST}</p>
+                    <p className="stats-paragraph left RPG">RPG: {this.state.data[random].TRB}</p>
 
                     <div className="stats-right-container">
-                    <p className="stats-paragraph right">BPG: {this.state.data[random].BLK}</p>
-                    <p className="stats-paragraph right">SPG: {this.state.data[random].STL}</p>
-                    <p className="stats-paragraph right">TPG: {this.state.data[random].TOV}</p>
+                    <p className="stats-paragraph right BPG">BPG: {this.state.data[random].BLK}</p>
+                    <p className="stats-paragraph right SPG">SPG: {this.state.data[random].STL}</p>
+                    <p className="stats-paragraph right TPG">TPG: {this.state.data[random].TOV}</p>
                     </div>
                     
                     
@@ -158,15 +158,15 @@ handleBasketballButton =  () => {
                     <img className="player-image" src= {this.state.data[randomTwo].src} alt = {this.state.data[randomTwo].alt} />
                 </div>
                 <div className="stats">
-                    <p className="stats-paragraph left" id="PPG-right">PPG: {this.state.data[randomTwo].PTS}</p>
-                    <p className="stats-paragraph left">TSP: {((this.state.data[randomTwo].TSP) * 100 ).toFixed(1) }%</p>
-                    <p className="stats-paragraph left">APG: {this.state.data[randomTwo].AST}</p>
-                    <p className="stats-paragraph left">RPG: {this.state.data[randomTwo].TRB}</p>
+                    <p className="stats-paragraph left PPG" >PPG: {this.state.data[randomTwo].PTS}</p>
+                    <p className="stats-paragraph left TSP">TSP: {((this.state.data[randomTwo].TSP) * 100 ).toFixed(1) }%</p>
+                    <p className="stats-paragraph left APG">APG: {this.state.data[randomTwo].AST}</p>
+                    <p className="stats-paragraph left RPG">RPG: {this.state.data[randomTwo].TRB}</p>
 
                     <div className="stats-right-container">
-                    <p className="stats-paragraph right">BPG: {this.state.data[randomTwo].BLK}</p>
-                    <p className="stats-paragraph right">SPG: {this.state.data[randomTwo].STL}</p>
-                    <p className="stats-paragraph right">TPG: {this.state.data[randomTwo].TOV}</p>
+                    <p className="stats-paragraph right BPG">BPG: {this.state.data[randomTwo].BLK}</p>
+                    <p className="stats-paragraph right SPG">SPG: {this.state.data[randomTwo].STL}</p>
+                    <p className="stats-paragraph right TPG">TPG: {this.state.data[randomTwo].TOV}</p>
                     </div>
                     
                     
