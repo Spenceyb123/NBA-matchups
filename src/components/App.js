@@ -9,7 +9,6 @@ import PlayerCard from './PlayerCard';
 
 // working on... 
 
-// 1. show full stats info on hover 
 // 2. get scorebard working * add state count to playerCard???
 
 
@@ -114,28 +113,41 @@ handleBasketballButton =  () => {
           
         <PlayerCard name="you"  >
         
-               
-                
                 <div className="name-container">{this.state.data[random].Player}<span className="year">{this.state.data[random].Season}</span></div>
                 <div className="player-image-container">
                     <img className="player-image" src= {this.state.data[random].src} alt = {this.state.data[random].alt} />
                 </div>
                 <div className="stats">
                     <p className="stats-paragraph left PPG" >
-                      <span className="stats-before-hover PPG">PPG: {this.state.data[random].PTS}</span>
+                      <span className="stats-before-hover">PPG: {this.state.data[random].PTS}</span>
                       <span className="stats-hover">Points Per Game</span>
                       </p>
                     <p className="stats-paragraph left TSP">
                       <span className="stats-before-hover">TSP: {((this.state.data[random].TSP) * 100 ).toFixed(1) }%</span>
                       <span className="stats-hover">True Shooting %</span>
                       </p>
-                    <p className="stats-paragraph left APG">APG: {this.state.data[random].AST}</p>
-                    <p className="stats-paragraph left RPG">RPG: {this.state.data[random].TRB}</p>
+                    <p className="stats-paragraph left APG">
+                      <span className="stats-before-hover">APG: {this.state.data[random].AST}</span>
+                      <span className="stats-hover">Assists Per Game</span>
+                      </p>
+                    <p className="stats-paragraph left RPG">
+                      <span className="stats-before-hover">RPG: {this.state.data[random].TRB}</span>
+                      <span className="stats-hover">Rebounds Per Game</span>
+                      </p>
 
                     <div className="stats-right-container">
-                    <p className="stats-paragraph right BPG">BPG: {this.state.data[random].BLK}</p>
-                    <p className="stats-paragraph right SPG">SPG: {this.state.data[random].STL}</p>
-                    <p className="stats-paragraph right TPG">TPG: {this.state.data[random].TOV}</p>
+                    <p className="stats-paragraph right BPG">
+                      <span className="stats-before-hover">BPG: {this.state.data[random].BLK}</span>
+                      <span className="stats-hover">Blocks Per Game</span>
+                      </p>
+                    <p className="stats-paragraph right SPG">
+                      <span className="stats-before-hover">SPG: {this.state.data[random].STL}</span>
+                      <span className="stats-hover">Steals Per Game</span>
+                      </p>
+                    <p className="stats-paragraph right TPG">
+                      <span className="stats-before-hover">TPG: {this.state.data[random].TOV}</span>
+                      <span className="stats-hover">Turnovers Per Game</span>
+                      </p>
                     </div>
                     
                     
@@ -146,7 +158,6 @@ handleBasketballButton =  () => {
 
 
         <PlayerCard name = "opponent" randomTwo={this.state.data[randomTwo]} random={this.state.data[random]} > 
-      {/* {console.log(this.state.hasMounted)} */}
 
         <div className="name-container">{this.state.data[randomTwo].Player}<span className="year">{this.state.data[randomTwo].Season}</span></div>
                 <div className="player-image-container">
@@ -154,20 +165,34 @@ handleBasketballButton =  () => {
                 </div>
                 <div className="stats">
                 <p className="stats-paragraph left PPG" >
-                      <span className="stats-before-hover PPG">PPG: {this.state.data[random].PTS}</span>
+                <span className="stats-before-hover">PPG: {this.state.data[random].PTS}</span>
                       <span className="stats-hover">Points Per Game</span>
                       </p>
                     <p className="stats-paragraph left TSP">
                       <span className="stats-before-hover">TSP: {((this.state.data[random].TSP) * 100 ).toFixed(1) }%</span>
                       <span className="stats-hover">True Shooting %</span>
                       </p>
-                    <p className="stats-paragraph left APG">APG: {this.state.data[randomTwo].AST}</p>
-                    <p className="stats-paragraph left RPG">RPG: {this.state.data[randomTwo].TRB}</p>
+                    <p className="stats-paragraph left APG">
+                      <span className="stats-before-hover">APG: {this.state.data[random].AST}</span>
+                      <span className="stats-hover">Assists Per Game</span>
+                      </p>
+                    <p className="stats-paragraph left RPG">
+                      <span className="stats-before-hover">RPG: {this.state.data[random].TRB}</span>
+                      <span className="stats-hover">Rebounds Per Game</span>
+                      </p>
 
                     <div className="stats-right-container">
-                    <p className="stats-paragraph right BPG">BPG: {this.state.data[randomTwo].BLK}</p>
-                    <p className="stats-paragraph right SPG">SPG: {this.state.data[randomTwo].STL}</p>
-                    <p className="stats-paragraph right TPG">TPG: {this.state.data[randomTwo].TOV}</p>
+                    <p className="stats-paragraph right BPG">
+                      <span className="stats-before-hover">BPG: {this.state.data[random].BLK}</span>
+                      <span className="stats-hover">Blocks Per Game</span>
+                      </p>
+                    <p className="stats-paragraph right SPG">
+                      <span className="stats-before-hover">SPG: {this.state.data[random].STL}</span>
+                      <span className="stats-hover">Steals Per Game</span>
+                      </p>
+                    <p className="stats-paragraph right TPG">
+                      <span className="stats-before-hover">TPG: {this.state.data[random].TOV}</span>
+                      <span className="stats-hover">Turnovers Per Game</span></p>
                     </div>
                     
                     

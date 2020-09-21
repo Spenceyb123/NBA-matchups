@@ -18,7 +18,7 @@ class PlayerCard extends React.Component {
 
     componentDidMount () {
         console.log('ChildDiv did mount');
-        console.log(document.getElementsByClassName(this.props.children[2].props.children[0].props.className));
+        console.log(document.querySelectorAll('.stats-before-hover.PPG')[0]);
       }
 
     componentDidUpdate() {
@@ -97,7 +97,7 @@ $(function(e){
             if(randomStat === 0 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
                 
-                    let ppg =  document.getElementsByClassName(this.props.children[2].props.children[0].props.className);
+                    let ppg =  document.querySelectorAll('.stats-before-hover.PPG'); // not iterable?
                     
                     for (const p of ppg) {
                         p.classList.add("animation");

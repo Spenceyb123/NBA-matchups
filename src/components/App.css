@@ -108,13 +108,8 @@ body{
 }
 
 /* adding hover description of stats */
-/* .stats-before-hover {
-  margin-left: 25px;
-} */
-
 .stats-hover {
   width: 110px;
-  margin-right: -35px;
 }
 
 .stats-paragraph.left.PPG .stats-hover {
@@ -126,8 +121,10 @@ body{
 }
 
 .stats-paragraph.left.PPG:hover .stats-hover {
-  display: inline;
-  background-color: white;
+  display: inline-block;
+  background-color: #EAEBE4;
+  color: goldenrod;
+  padding: 1px 0;
 }
 
 .stats-paragraph.left.TSP .stats-hover {
@@ -139,21 +136,102 @@ body{
 }
 
 .stats-paragraph.left.TSP:hover .stats-hover {
-  display: inline;
-  background-color: white;
+  display: inline-block;
+  background-color: #EAEBE4;
+  color: goldenrod;
+  padding: 1px 0;
+}
+
+.stats-paragraph.left.APG .stats-hover {
+  display: none;
+}
+
+.stats-paragraph.left.APG:hover .stats-before-hover {
+  display: none;
+}
+
+.stats-paragraph.left.APG:hover .stats-hover {
+  display: inline-block;
+  background-color: #EAEBE4;
+  color: goldenrod;
+  width: 120px;
+ 
+}
+
+.stats-paragraph.left.RPG .stats-hover {
+  display: none;
+}
+
+.stats-paragraph.left.RPG:hover .stats-before-hover {
+  display: none;
+}
+
+.stats-paragraph.left.RPG:hover .stats-hover {
+  display: inline-block;
+  background-color: #EAEBE4;
+  color: goldenrod;
+  width: 135px;
+  
+}
+
+.stats-paragraph.right.BPG .stats-hover {
+  display: none;
+}
+
+.stats-paragraph.right.BPG:hover .stats-before-hover {
+  display: none;
+}
+
+.stats-paragraph.right.BPG:hover .stats-hover {
+  display: inline-block;
+  background-color: #EAEBE4;
+  color: goldenrod;
+  width: 118px;
+  
+}
+
+.stats-paragraph.right.SPG .stats-hover {
+  display: none;
+}
+
+.stats-paragraph.right.SPG:hover .stats-before-hover {
+  display: none;
+}
+
+.stats-paragraph.right.SPG:hover .stats-hover {
+  display: inline-block;
+  background-color: #EAEBE4;
+  color: goldenrod;
+}
+
+.stats-paragraph.right.TPG .stats-hover {
+  display: none;
+}
+
+.stats-paragraph.right.TPG:hover .stats-before-hover {
+  display: none;
+}
+
+.stats-paragraph.right.TPG:hover .stats-hover {
+  display: inline-block;
+  background-color: #EAEBE4;
+  color: goldenrod;
+  width: 75px;
 }
 
 
 
 
-
-
-
+/* animation for stats comparisons */
 .animation {
   background-color: gold;
   border: dotted 1px black;
   animation: blinkingBackground 2s;
   animation-iteration-count: 1.5;
+}
+
+.animation:hover {
+  border: none;
 }
 
 @keyframes blinkingBackground{
