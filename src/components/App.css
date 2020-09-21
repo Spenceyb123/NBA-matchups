@@ -73,7 +73,7 @@ body{
   padding-left: 5px;
 }
 
-span {
+.year {
     float: right;
     padding-right: 15px;
 }
@@ -107,11 +107,53 @@ span {
   
 }
 
+/* adding hover description of stats */
+/* .stats-before-hover {
+  margin-left: 25px;
+} */
+
+.stats-hover {
+  width: 110px;
+  margin-right: -35px;
+}
+
+.stats-paragraph.left.PPG .stats-hover {
+  display: none;
+}
+
+.stats-paragraph.left.PPG:hover .stats-before-hover {
+  display: none;
+}
+
+.stats-paragraph.left.PPG:hover .stats-hover {
+  display: inline;
+  background-color: white;
+}
+
+.stats-paragraph.left.TSP .stats-hover {
+  display: none;
+}
+
+.stats-paragraph.left.TSP:hover .stats-before-hover {
+  display: none;
+}
+
+.stats-paragraph.left.TSP:hover .stats-hover {
+  display: inline;
+  background-color: white;
+}
+
+
+
+
+
+
+
 .animation {
   background-color: gold;
   border: dotted 1px black;
   animation: blinkingBackground 2s;
-  animation-iteration-count: 2;
+  animation-iteration-count: 1.5;
 }
 
 @keyframes blinkingBackground{

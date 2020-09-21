@@ -9,8 +9,9 @@ import PlayerCard from './PlayerCard';
 
 // working on... 
 
+// 1. show full stats info on hover 
 // 2. get scorebard working * add state count to playerCard???
-// 3. delaying stats alert until animation (needs done) shows comparing stats etc. 
+
 
 
 
@@ -68,26 +69,14 @@ componentDidMount() {
 
 handleBasketballButton =  () => {
   this.setState({data: Images});
+  let statsParagraphElements = document.querySelectorAll(".stats-paragraph");
+  (function _removeClasses() {
+    for (var i = 0; i < statsParagraphElements.length; i++) {
+      statsParagraphElements[i].classList.remove('animation')
+    }
+  }());
 }
 
-// handleMount = () => {
-//   if(!this.state.hasMounted){
-//     this.setState({ hasMounted: true })
-//     console.log(this.state.hasMounted);
-//   }
-// }
-
-
-// compareSiblings = () => {
-  
-// }
-
-// self.setState({ hasMounted: true });
-
-  
-
-  
-  
   
   render(){
     console.log("app render");
@@ -114,7 +103,7 @@ handleBasketballButton =  () => {
 
     return (
       <div > 
- {/* { console.log(document.contains(test))} */}
+ 
         <div className="basketball-container"> 
         <img className="basketball" src={BasketballButton} onClick={this.handleBasketballButton } alt="click this basketball button to get a new matchup"/>
         </div>
@@ -127,13 +116,19 @@ handleBasketballButton =  () => {
         
                
                 
-                <div className="name-container">{this.state.data[random].Player}<span>{this.state.data[random].Season}</span></div>
+                <div className="name-container">{this.state.data[random].Player}<span className="year">{this.state.data[random].Season}</span></div>
                 <div className="player-image-container">
                     <img className="player-image" src= {this.state.data[random].src} alt = {this.state.data[random].alt} />
                 </div>
                 <div className="stats">
-                    <p className="stats-paragraph left PPG" >PPG: {this.state.data[random].PTS}</p>
-                    <p className="stats-paragraph left TSP">TSP: {((this.state.data[random].TSP) * 100 ).toFixed(1) }%</p>
+                    <p className="stats-paragraph left PPG" >
+                      <span className="stats-before-hover PPG">PPG: {this.state.data[random].PTS}</span>
+                      <span className="stats-hover">Points Per Game</span>
+                      </p>
+                    <p className="stats-paragraph left TSP">
+                      <span className="stats-before-hover">TSP: {((this.state.data[random].TSP) * 100 ).toFixed(1) }%</span>
+                      <span className="stats-hover">True Shooting %</span>
+                      </p>
                     <p className="stats-paragraph left APG">APG: {this.state.data[random].AST}</p>
                     <p className="stats-paragraph left RPG">RPG: {this.state.data[random].TRB}</p>
 
@@ -153,13 +148,19 @@ handleBasketballButton =  () => {
         <PlayerCard name = "opponent" randomTwo={this.state.data[randomTwo]} random={this.state.data[random]} > 
       {/* {console.log(this.state.hasMounted)} */}
 
-        <div className="name-container">{this.state.data[randomTwo].Player}<span>{this.state.data[randomTwo].Season}</span></div>
+        <div className="name-container">{this.state.data[randomTwo].Player}<span className="year">{this.state.data[randomTwo].Season}</span></div>
                 <div className="player-image-container">
                     <img className="player-image" src= {this.state.data[randomTwo].src} alt = {this.state.data[randomTwo].alt} />
                 </div>
                 <div className="stats">
-                    <p className="stats-paragraph left PPG" >PPG: {this.state.data[randomTwo].PTS}</p>
-                    <p className="stats-paragraph left TSP">TSP: {((this.state.data[randomTwo].TSP) * 100 ).toFixed(1) }%</p>
+                <p className="stats-paragraph left PPG" >
+                      <span className="stats-before-hover PPG">PPG: {this.state.data[random].PTS}</span>
+                      <span className="stats-hover">Points Per Game</span>
+                      </p>
+                    <p className="stats-paragraph left TSP">
+                      <span className="stats-before-hover">TSP: {((this.state.data[random].TSP) * 100 ).toFixed(1) }%</span>
+                      <span className="stats-hover">True Shooting %</span>
+                      </p>
                     <p className="stats-paragraph left APG">APG: {this.state.data[randomTwo].AST}</p>
                     <p className="stats-paragraph left RPG">RPG: {this.state.data[randomTwo].TRB}</p>
 

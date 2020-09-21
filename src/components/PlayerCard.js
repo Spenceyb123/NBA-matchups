@@ -18,7 +18,7 @@ class PlayerCard extends React.Component {
 
     componentDidMount () {
         console.log('ChildDiv did mount');
-        console.log(this.props.children[2].props.children[2].props.className);
+        console.log(document.getElementsByClassName(this.props.children[2].props.children[0].props.className));
       }
 
     componentDidUpdate() {
@@ -39,17 +39,7 @@ $(function(e){
     $(window).focus().keypress(function(e){
         if(e.charCode === 13) {
             $('.customAlert').css('animation', 'fadeOut 0.3s linear');
-            // experimenting with animation and getting it to go away 
-            let statsParagraphElements = document.querySelectorAll(".stats-paragraph");
 
-            (function _removeClasses() {
-                for (var i = 0; i < statsParagraphElements.length; i++) {
-                  statsParagraphElements[i].classList.remove('animation')
-                }
-              }());
-            //was able to do it with above(?)
-        
-        
         setTimeout(function(){
          $('.customAlert').css('animation', 'none');
             $('.customAlert').css('display', 'none');
@@ -62,14 +52,6 @@ $(function(e){
 	$('.confirmButton').click(function(){
     $('.customAlert').css('animation', 'fadeOut 0.3s linear');
 
-    let statsParagraphElements = document.querySelectorAll(".stats-paragraph");
-
-            (function _removeClasses() {
-                for (var i = 0; i < statsParagraphElements.length; i++) {
-                  statsParagraphElements[i].classList.remove('animation')
-                }
-              }());
-    
     setTimeout(function(){
      $('.customAlert').css('animation', 'none');
 		$('.customAlert').css('display', 'none');
@@ -116,7 +98,7 @@ $(function(e){
                 (() => {
                 
                     let ppg =  document.getElementsByClassName(this.props.children[2].props.children[0].props.className);
-                 
+                    
                     for (const p of ppg) {
                         p.classList.add("animation");
                       }
