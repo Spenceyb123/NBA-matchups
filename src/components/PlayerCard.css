@@ -13,7 +13,8 @@
 
 
 .customAlert{
-	/* overflow: visible; */
+  /* overflow: visible; */
+  
   display: none;
   position: fixed;
   max-width: 450px;
