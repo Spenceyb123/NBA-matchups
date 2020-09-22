@@ -110,7 +110,8 @@ body{
 
 /* adding hover description of stats */
 .stats-hover {
-  width: 110px;
+  width: 130px;
+  font-weight: bold;
 }
 
 .stats-paragraph.left.PPG .stats-hover {
@@ -124,7 +125,7 @@ body{
 .stats-paragraph.left.PPG:hover .stats-hover {
   display: inline-block;
   background-color: #EAEBE4;
-  color: goldenrod;
+  color:  rgb(163, 119, 6);
   padding: 1px 0;
 }
 
@@ -139,7 +140,7 @@ body{
 .stats-paragraph.left.TSP:hover .stats-hover {
   display: inline-block;
   background-color: #EAEBE4;
-  color: goldenrod;
+  color:  rgb(163, 119, 6);
   padding: 1px 0;
 }
 
@@ -154,7 +155,7 @@ body{
 .stats-paragraph.left.APG:hover .stats-hover {
   display: inline-block;
   background-color: #EAEBE4;
-  color: goldenrod;
+  color:  rgb(163, 119, 6);
   width: 120px;
  
 }
@@ -170,8 +171,8 @@ body{
 .stats-paragraph.left.RPG:hover .stats-hover {
   display: inline-block;
   background-color: #EAEBE4;
-  color: goldenrod;
-  width: 135px;
+  color:  rgb(163, 119, 6);
+  width: 145px;
   
 }
 
@@ -186,8 +187,8 @@ body{
 .stats-paragraph.right.BPG:hover .stats-hover {
   display: inline-block;
   background-color: #EAEBE4;
-  color: goldenrod;
-  width: 118px;
+  color:  rgb(163, 119, 6);
+  width: 120px;
   
 }
 
@@ -202,7 +203,8 @@ body{
 .stats-paragraph.right.SPG:hover .stats-hover {
   display: inline-block;
   background-color: #EAEBE4;
-  color: goldenrod;
+  color:  rgb(163, 119, 6);
+  width: 120px;
 }
 
 .stats-paragraph.right.TPG .stats-hover {
@@ -216,7 +218,7 @@ body{
 .stats-paragraph.right.TPG:hover .stats-hover {
   display: inline-block;
   background-color: #EAEBE4;
-  color: goldenrod;
+  color:  rgb(163, 119, 6);
   width: 75px;
 }
 

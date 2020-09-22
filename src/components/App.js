@@ -9,7 +9,7 @@ import PlayerCard from './PlayerCard';
 import Scoreboard from './Scoreboard';
 
 // working on... 
-
+//1. scoreboard text flashing 
 // 2. get scorebard working * add state count to playerCard???
 
 
@@ -80,7 +80,7 @@ handleBasketballButton =  () => {
 //trying to get one of customalerts to not show below...
 handleAlerts = () => {
   let firstAlert = document.getElementsByClassName('customAlert')[1];
-  console.log(firstAlert);
+
   if(firstAlert != undefined) {
     firstAlert.parentNode.removeChild(firstAlert);
   }
@@ -88,12 +88,11 @@ handleAlerts = () => {
 
   
   render(){
+   
     console.log("app render");
     const random = Math.floor(Math.random() * Images.length); 
     const randomTwo = Math.floor(Math.random() * Images.length);
     
-
-    // console.log(this.state.data);
 
     if(random === randomTwo) { // i don't think this is working quite like I hope yet
       this.setState({ data: Images })

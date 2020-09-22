@@ -18,23 +18,25 @@
   display: none;
   position: fixed;
   max-width: 450px;
-  min-width: 450px !important;
-  min-height: 40%;
+  min-width: 420px !important;
+  min-height: 45%;
   height: 250px;
-  left: 47%;
-  top: 29%;
-  padding: 10px;
+  left: 48%;
+  top: 8.2%;
+  /* padding: 10px; */
   box-sizing: border-box;
   margin-left: -12.5%;
   margin-top: -5.2%;
-  background-image: url(../assets/images/arena-monitor.png);
+  background-image: url(../assets/images/nba-scoreboard.png);
   background-position: center;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   color: white;
   text-align: center;
   font-size: 1.25rem;
   font-family: Codystar;
   font-weight: bolder;
+  z-index: 1;
   /* border: 3px red solid; */
   /* box-shadow: 10px 15px 10px -15px #111;  */
 }

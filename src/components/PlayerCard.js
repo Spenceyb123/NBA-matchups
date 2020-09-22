@@ -24,7 +24,9 @@ class PlayerCard extends React.Component {
         
 // override default browser alert
 window.alert = function(msg){
-
+    //hide basketball when alert pops up...
+  $(".basketball-container").hide();
+  //......................................
   $('.message').text(msg);
   $('.customAlert').css('animation', 'fadeIn 0.3s linear');
   $('.customAlert').css('display', 'inline');
@@ -33,11 +35,16 @@ window.alert = function(msg){
   }, 300);
 }
 
+//experimenting 
+
+
 $(function(e){
     // add listener for when enter button pressed (had to make focus on window so that enter recognized from anywhere, and not just if alert focused on)
     $(window).focus().keypress(function(e){
         if(e.charCode === 13) {
             $('.customAlert').css('animation', 'fadeOut 0.3s linear');
+
+            
 
         setTimeout(function(){
          $('.customAlert').css('animation', 'none');
@@ -51,12 +58,15 @@ $(function(e){
 	$('.confirmButton').click(function(){
     $('.customAlert').css('animation', 'fadeOut 0.3s linear');
 
+    $(".basketball-container").show().css("animation", "fadeIn 0.3s linear");
+
     setTimeout(function(){
      $('.customAlert').css('animation', 'none');
-		$('.customAlert').css('display', 'none');
+        $('.customAlert').css('display', 'none');
+
     }, 300);
   })
-
+  
 });
 
 
