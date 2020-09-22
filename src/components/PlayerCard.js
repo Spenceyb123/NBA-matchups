@@ -43,6 +43,7 @@ $(function(e){
     $(window).focus().keypress(function(e){
         if(e.charCode === 13) {
             $('.customAlert').css('animation', 'fadeOut 0.3s linear');
+            $(".basketball-container").show().css("animation", "fadeIn 0.3s linear");
 
             
 

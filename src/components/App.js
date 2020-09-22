@@ -6,10 +6,10 @@ import importedCsvData from '../assets/players.csv';
 import Images from'../Images';
 import BasketballButton from "../assets/images/basketball-button.png";
 import PlayerCard from './PlayerCard';
-import Scoreboard from './Scoreboard';
+// import Scoreboard from './Scoreboard'; // prob gonna just get rid of this 
 
 // working on... 
-//1. scoreboard text flashing 
+
 // 2. get scorebard working * add state count to playerCard???
 
 
@@ -111,8 +111,6 @@ handleAlerts = () => {
 
     return (
       <div > 
-
-        <Scoreboard />
  
         <div className="basketball-container"> 
         <img className="basketball" src={BasketballButton} onClick={this.handleBasketballButton } alt="click this basketball button to get a new matchup"/>

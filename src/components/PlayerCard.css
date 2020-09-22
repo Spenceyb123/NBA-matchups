@@ -90,7 +90,7 @@
   .confirmButton {
     /* margin-top: 3rem; */
     position: absolute;
-    left: 17.5%;
+    left: 39%;
     top: 71.5%;
     background: none;
     /* color: white;
@@ -98,8 +98,8 @@
     font-family: Codystar; 
     /* keeping font properties even though can't see text because it helps with sizing of button */
     font-weight: bolder;
-    font-size: 1.25rem;
-    padding: .3em 6.5em;
+    font-size: 1.5rem;
+    padding: .75em 2em;
     border: none;
     cursor: pointer;
   }
