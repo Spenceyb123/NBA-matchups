@@ -18,7 +18,6 @@ class PlayerCard extends React.Component {
 
     componentDidMount () {
         console.log('ChildDiv did mount');
-        console.log(document.querySelectorAll('.stats-before-hover.PPG')[0]);
       }
 
     componentDidUpdate() {
@@ -63,7 +62,7 @@ $(function(e){
 
         // putting all the below in here so that no alert upon App rnder when cards not even showing 
         console.log('updated');
-        // console.log(this.props.children[2].props.children[0]); // working on this shit 
+        
         const random = this.props.random;
         const randomTwo = this.props.randomTwo;
      
@@ -102,6 +101,7 @@ $(function(e){
                     for (const p of ppg) {
                         p.classList.add("animation");
                       }
+                    
                 })();
                 
                 alert(random.Player + " gets by " + randomTwo.Player + " for the bucket!");
@@ -114,7 +114,6 @@ $(function(e){
                         p.classList.add("animation");
                       }
 
-                      
                 })();
                 alert(randomTwo.Player + " gets by " + random.Player + " for the bucket!");
             } else if (randomStat === 1 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
@@ -248,7 +247,7 @@ $(function(e){
 
        
         return (
-            <div>
+            <div class="test">
          
             <div className="mtg-card-container">
                 <img className="MTG-card" src={MTGCard} alt="player card"/>

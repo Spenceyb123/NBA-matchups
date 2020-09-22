@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
-// import $ from 'jquery';
+import $ from 'jquery';
 import * as d3 from 'd3';
 import importedCsvData from '../assets/players.csv';
 import Images from'../Images';
 import BasketballButton from "../assets/images/basketball-button.png";
 import PlayerCard from './PlayerCard';
+import Scoreboard from './Scoreboard';
 
 // working on... 
 
@@ -76,6 +77,15 @@ handleBasketballButton =  () => {
   }());
 }
 
+//trying to get one of customalerts to not show below...
+handleAlerts = () => {
+  let firstAlert = document.getElementsByClassName('customAlert')[1];
+  console.log(firstAlert);
+  if(firstAlert != undefined) {
+    firstAlert.parentNode.removeChild(firstAlert);
+  }
+}
+
   
   render(){
     console.log("app render");
@@ -102,6 +112,8 @@ handleBasketballButton =  () => {
 
     return (
       <div > 
+
+        <Scoreboard />
  
         <div className="basketball-container"> 
         <img className="basketball" src={BasketballButton} onClick={this.handleBasketballButton } alt="click this basketball button to get a new matchup"/>
@@ -111,7 +123,7 @@ handleBasketballButton =  () => {
         <div className="cards-container" tabIndex= "-1">
           
           
-        <PlayerCard name="you"  >
+        <PlayerCard name="you" render={this.handleAlerts()} >
         
                 <div className="name-container">{this.state.data[random].Player}<span className="year">{this.state.data[random].Season}</span></div>
                 <div className="player-image-container">
@@ -200,7 +212,7 @@ handleBasketballButton =  () => {
       
          
         </PlayerCard >
-     
+  
           
           </div>
        

@@ -1,0 +1,19 @@
+#scoreboard-container {
+    /* width: auto;  */
+    max-width: 230px;
+    /* position: fixed;
+    left: 43%;
+    top: .5%; */ 
+    position: fixed;
+    top: .5%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    
+}
