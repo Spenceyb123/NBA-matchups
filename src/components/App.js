@@ -1,16 +1,17 @@
 import React from 'react';
 import './App.css';
-import $ from 'jquery';
+// import $ from 'jquery';
 import * as d3 from 'd3';
 import importedCsvData from '../assets/players.csv';
 import Images from'../Images';
 import BasketballButton from "../assets/images/basketball-button.png";
 import PlayerCard from './PlayerCard';
-// import Scoreboard from './Scoreboard'; // prob gonna just get rid of this 
+// import Scoreboard from './Scoreboard'; // prob gonna just get rid of this and component
 
 // working on... 
-
+//1. why setState before alert in PlayerCard not working and causing multiple animations?
 // 2. get scorebard working * add state count to playerCard???
+//3. make sure doesn't add two to scorecard since two playerCards
 
 
 
@@ -21,7 +22,7 @@ class App extends React.Component {
     
     this.state = {
         data: null,
-        hasMounted: false //This is what our data will eventually be loaded into
+        // hasMounted: false //I don't think this is doign anything??????......
     };
     // console.log(this.state.hasMounted);
 }
@@ -94,7 +95,7 @@ handleAlerts = () => {
     const randomTwo = Math.floor(Math.random() * Images.length);
     
 
-    if(random === randomTwo) { // i don't think this is working quite like I hope yet
+    if(random === randomTwo) { 
       this.setState({ data: Images })
     } 
     
@@ -174,33 +175,33 @@ handleAlerts = () => {
                 </div>
                 <div className="stats">
                 <p className="stats-paragraph left PPG" >
-                <span className="stats-before-hover">PPG: {this.state.data[random].PTS}</span>
+                <span className="stats-before-hover">PPG: {this.state.data[randomTwo].PTS}</span>
                       <span className="stats-hover">Points Per Game</span>
                       </p>
                     <p className="stats-paragraph left TSP">
-                      <span className="stats-before-hover">TSP: {((this.state.data[random].TSP) * 100 ).toFixed(1) }%</span>
+                      <span className="stats-before-hover">TSP: {((this.state.data[randomTwo].TSP) * 100 ).toFixed(1) }%</span>
                       <span className="stats-hover">True Shooting %</span>
                       </p>
                     <p className="stats-paragraph left APG">
-                      <span className="stats-before-hover">APG: {this.state.data[random].AST}</span>
+                      <span className="stats-before-hover">APG: {this.state.data[randomTwo].AST}</span>
                       <span className="stats-hover">Assists Per Game</span>
                       </p>
                     <p className="stats-paragraph left RPG">
-                      <span className="stats-before-hover">RPG: {this.state.data[random].TRB}</span>
+                      <span className="stats-before-hover">RPG: {this.state.data[randomTwo].TRB}</span>
                       <span className="stats-hover">Rebounds Per Game</span>
                       </p>
 
                     <div className="stats-right-container">
                     <p className="stats-paragraph right BPG">
-                      <span className="stats-before-hover">BPG: {this.state.data[random].BLK}</span>
+                      <span className="stats-before-hover">BPG: {this.state.data[randomTwo].BLK}</span>
                       <span className="stats-hover">Blocks Per Game</span>
                       </p>
                     <p className="stats-paragraph right SPG">
-                      <span className="stats-before-hover">SPG: {this.state.data[random].STL}</span>
+                      <span className="stats-before-hover">SPG: {this.state.data[randomTwo].STL}</span>
                       <span className="stats-hover">Steals Per Game</span>
                       </p>
                     <p className="stats-paragraph right TPG">
-                      <span className="stats-before-hover">TPG: {this.state.data[random].TOV}</span>
+                      <span className="stats-before-hover">TPG: {this.state.data[randomTwo].TOV}</span>
                       <span className="stats-hover">Turnovers Per Game</span></p>
                     </div>
                     

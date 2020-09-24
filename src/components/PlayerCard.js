@@ -6,18 +6,17 @@ import MTGCard from "../assets/images/mtg-card.png";
 
 class PlayerCard extends React.Component {
 
+// constructor(props) {
+//     super(props);
+// }
     
-    // constructor(props) {
-    //     super(props)
-        
-        
-    // }
-
 
 
 
     componentDidMount () {
         console.log('ChildDiv did mount');
+        // console.log(this.state.countLeft);
+        // console.log(props);
       }
 
     componentDidUpdate() {
@@ -105,6 +104,7 @@ $(function(e){
            
 
             if(randomStat === 0 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                // this.setState({countLeft: +1}); causes to rerender :(
                 (() => {
                 
                     let ppg =  document.getElementsByClassName(this.props.children[2].props.children[0].props.className); 
@@ -114,9 +114,11 @@ $(function(e){
                       }
                     
                 })();
-                
                 alert(random.Player + " gets by " + randomTwo.Player + " for the bucket!");
+                
+
             } else if (randomStat === 0 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                // this.setState({countRight: +1});
                 (() => {
                     
                     let ppg =  document.getElementsByClassName(this.props.children[2].props.children[0].props.className);
@@ -126,7 +128,9 @@ $(function(e){
                       }
 
                 })();
+                
                 alert(randomTwo.Player + " gets by " + random.Player + " for the bucket!");
+                
             } else if (randomStat === 1 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
                     let tsp =  document.getElementsByClassName(this.props.children[2].props.children[1].props.className);
@@ -258,7 +262,7 @@ $(function(e){
 
        
         return (
-            <div class="test">
+            <div>
          
             <div className="mtg-card-container">
                 <img className="MTG-card" src={MTGCard} alt="player card"/>
@@ -275,6 +279,9 @@ $(function(e){
     </div>
 
   <input type='button' className='confirmButton'  />
+  
+        <div className="score-left">0</div>
+  <div className="score-right">0</div>
 </div>
 
 
