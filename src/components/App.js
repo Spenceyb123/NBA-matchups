@@ -12,8 +12,10 @@ import PlayerCard from './PlayerCard';
 //1. why setState before alert in PlayerCard not working and causing multiple animations?
 // 2. get scorebard working * add state count to playerCard???
 //3. make sure doesn't add two to scorecard since two playerCards
+// 4.drop shadow on monitor and cards?
+//5. update cards on alert ok, then compare stats when click juump ball
 
-
+let varForBasketballButton = 0; // global so handleBaskeballButton can acces and doesn't reset when updated
 
 
 class App extends React.Component {
@@ -60,16 +62,19 @@ componentDidMount() {
 
 
 
-// componentDidUpdate(prevProps, prevState) {
-//   if (prevProps !== this.props) {
-    
-//     console.log('pokemons state has changed.')
-//   }
-// }
+
+componentDidUpdate() {
+  console.log("app updated");
+}
 
 
 handleBasketballButton =  () => {
-  this.setState({data: Images});
+  //sets state only first time 
+  while(varForBasketballButton < 1) {
+    this.setState({data: Images});
+    varForBasketballButton ++;
+  };
+  
   let statsParagraphElements = document.querySelectorAll(".stats-paragraph");
   (function _removeClasses() {
     for (var i = 0; i < statsParagraphElements.length; i++) {
@@ -78,13 +83,18 @@ handleBasketballButton =  () => {
   }());
 }
 
-//trying to get one of customalerts to not show below...
+//so one of customalerts not show below...
 handleAlerts = () => {
-  let firstAlert = document.getElementsByClassName('customAlert')[1];
+  let firstAlert = document.getElementsByClassName('customAlert')[1]; //actually second alert
 
-  if(firstAlert != undefined) {
+  if(firstAlert !== undefined) {
     firstAlert.parentNode.removeChild(firstAlert);
-  }
+  };
+}
+
+newPlayersOnAlert = () => {
+  this.setState({ data: Images });
+  console.log("new Players");
 }
 
   
@@ -121,7 +131,7 @@ handleAlerts = () => {
         <div className="cards-container" tabIndex= "-1">
           
           
-        <PlayerCard name="you" render={this.handleAlerts()} >
+        <PlayerCard render={this.handleAlerts()} data={this.state.data} newPlayersOnAlert={this.newPlayersOnAlert} >
         
                 <div className="name-container">{this.state.data[random].Player}<span className="year">{this.state.data[random].Season}</span></div>
                 <div className="player-image-container">
@@ -167,7 +177,7 @@ handleAlerts = () => {
 
 
 
-        <PlayerCard name = "opponent" randomTwo={this.state.data[randomTwo]} random={this.state.data[random]} > 
+        <PlayerCard randomTwo={this.state.data[randomTwo]} random={this.state.data[random]} > 
 
         <div className="name-container">{this.state.data[randomTwo].Player}<span className="year">{this.state.data[randomTwo].Season}</span></div>
                 <div className="player-image-container">
