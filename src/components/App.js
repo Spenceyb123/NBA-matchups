@@ -15,7 +15,6 @@ import PlayerCard from './PlayerCard';
 // 4.drop shadow on monitor and cards?
 //5. update cards on alert ok, then compare stats when click juump ball
 
-let varForBasketballButton = 0; // global so handleBaskeballButton can acces and doesn't reset when updated
 
 
 class App extends React.Component {
@@ -54,8 +53,40 @@ componentDidMount() {
         }
       }  
 
-   self.setState({ data: Images });
+   self.setState({ data: Images }); // do I need this with refig????????
+   console.log(data[40]);
+   //setting initial cards to Jordan and Kobe....
+   //Jordan
+   document.getElementsByClassName("name-container")[0].insertAdjacentHTML('afterbegin', data[0].Player );
+   document.getElementsByClassName("year")[0].insertAdjacentHTML('afterbegin', data[0].Season);
+   document.getElementsByClassName("player-image")[0].src = self.state.data[0].src; //merged Images with data in state
+   document.getElementsByClassName("stats-before-hover")[0].insertAdjacentHTML('beforeend', data[0].PTS);
+   document.getElementsByClassName("stats-before-hover")[1].insertAdjacentHTML('beforeend', (data[0].TSP * 100).toFixed(1) + "%");
+   document.getElementsByClassName("stats-before-hover")[2].insertAdjacentHTML('beforeend', data[0].AST);
+   document.getElementsByClassName("stats-before-hover")[3].insertAdjacentHTML('beforeend', data[0].TRB);
+   document.getElementsByClassName("stats-before-hover")[4].insertAdjacentHTML('beforeend', data[0].BLK);
+   document.getElementsByClassName("stats-before-hover")[5].insertAdjacentHTML('beforeend', data[0].STL);
+   document.getElementsByClassName("stats-before-hover")[6].insertAdjacentHTML('beforeend', data[0].TOV);
 
+   //Kobe
+   document.getElementsByClassName("name-container")[1].insertAdjacentHTML('afterbegin', data[40].Player );
+   document.getElementsByClassName("year")[1].insertAdjacentHTML('afterbegin', data[40].Season);
+   document.getElementsByClassName("player-image")[1].src = self.state.data[40].src; //merged Images with data in state
+   document.getElementsByClassName("stats-before-hover")[7].insertAdjacentHTML('beforeend', data[40].PTS);
+   document.getElementsByClassName("stats-before-hover")[8].insertAdjacentHTML('beforeend', (data[40].TSP * 100).toFixed(1) + "%");
+   document.getElementsByClassName("stats-before-hover")[9].insertAdjacentHTML('beforeend', data[40].AST);
+   document.getElementsByClassName("stats-before-hover")[10].insertAdjacentHTML('beforeend', data[40].TRB);
+   document.getElementsByClassName("stats-before-hover")[11].insertAdjacentHTML('beforeend', data[40].BLK);
+   document.getElementsByClassName("stats-before-hover")[12].insertAdjacentHTML('beforeend', data[40].STL);
+   document.getElementsByClassName("stats-before-hover")[13].insertAdjacentHTML('beforeend', data[40].TOV);
+
+
+   
+
+
+
+   
+  //  document.getElementsByClassName("year")[0].innerText = data[0].Season;
   }); 
   console.log('mounted');
 }
@@ -65,16 +96,201 @@ componentDidMount() {
 
 componentDidUpdate() {
   console.log("app updated");
+  console.log(document.getElementsByClassName("year"));
 }
 
 
 handleBasketballButton =  () => {
-  //sets state only first time 
-  while(varForBasketballButton < 1) {
-    this.setState({data: Images});
-    varForBasketballButton ++;
-  };
-  
+ 
+  const random = Math.floor(Math.random() * Images.length); 
+  const randomTwo = Math.floor(Math.random() * Images.length);
+    
+  if (random === randomTwo) { //so that won't be same two players 
+    random = Math.floor(Math.random() * Images.length); 
+    randomTwo = Math.floor(Math.random() * Images.length);
+  }
+    
+     
+        if(random !== undefined || randomTwo !== undefined){
+            
+            const statsArrayRandom = [];
+            const randomPPG = random.PTS;
+            const randomTSP = random.TSP;
+            const randomAPG = random.AST;
+            const randomRPG = random.TRB;
+            const randomBPG = random.BLK;
+            const randomSPG = random.STL;
+            const randomTPG = random.TOV;
+            statsArrayRandom.push(randomPPG, randomTSP, randomAPG, randomRPG, randomBPG, randomSPG, randomTPG);
+
+            const statsArrayRandomTwo = [];
+            const randomTwoPPG = randomTwo.PTS;
+            const randomTwoTSP = randomTwo.TSP;
+            const randomTwoAPG = randomTwo.AST;
+            const randomTwoRPG = randomTwo.TRB;
+            const randomTwoBPG = randomTwo.BLK;
+            const randomTwoSPG = randomTwo.STL;
+            const randomTwoTPG = randomTwo.TOV;
+            statsArrayRandomTwo.push(randomTwoPPG, randomTwoTSP, randomTwoAPG, randomTwoRPG, randomTwoBPG, randomTwoSPG, randomTwoTPG);
+
+            const randomStat = Math.floor(Math.random() * statsArrayRandom.length);
+            
+            // console.log(statsArrayRandom, statsArrayRandomTwo);
+           
+
+            if(randomStat === 0 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                // this.setState({countLeft: +1}); causes to rerender :(
+                (() => {
+                
+                    let ppg =  document.getElementsByClassName(this.props.children[2].props.children[0].props.className); 
+                    
+                    for (const p of ppg) {
+                        p.classList.add("animation");
+                      }
+                    
+                })();
+                alert(random.Player + " gets by " + randomTwo.Player + " for the bucket!");
+                
+
+            } else if (randomStat === 0 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                // this.setState({countRight: +1});
+                (() => {
+                    
+                    let ppg =  document.getElementsByClassName(this.props.children[2].props.children[0].props.className);
+          
+                    for (const p of ppg) {
+                        p.classList.add("animation");
+                      }
+
+                })();
+                
+                alert(randomTwo.Player + " gets by " + random.Player + " for the bucket!");
+                
+            } else if (randomStat === 1 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[1].props.className);
+                    //started keeping variable names same when copying and pastying since local scope 
+                    for (const t of tsp) {
+                        t.classList.add("animation");
+                      }
+                    
+                })();
+                alert(random.Player + " is money!");
+            } else if (randomStat === 1 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[1].props.className);
+                    
+                    for (const t of tsp) {
+                        t.classList.add("animation");
+                      }
+                    
+                })();
+                alert(randomTwo.Player + " is money!");
+            } else if (randomStat === 2 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[2].props.className);
+                    
+                    for (const t of tsp) {
+                        t.classList.add("animation");
+                      }
+                    
+                })();
+                alert(random.Player + " makes " + randomTwo.Player + "'s head spin with the dime!");
+            } else if (randomStat === 2 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[2].props.className);
+                    
+                    for (const t of tsp) {
+                        t.classList.add("animation");
+                      }
+                    
+                })();
+                alert(randomTwo.Player + " makes " + random.Player + "'s head spin with the dime!");
+            } else if (randomStat === 3 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[3].props.className);
+                    
+                    for (const t of tsp) {
+                        t.classList.add("animation");
+                      }
+                    
+                })();
+                alert(random.Player + " secures the rebound!");
+            } else if (randomStat === 3 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[3].props.className);
+                    
+                    for (const t of tsp) {
+                        t.classList.add("animation");
+                      }
+                    
+                })();
+                alert(randomTwo.Player + " secures the rebound!");
+            } else if (randomStat === 4 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[0].props.className);
+                    
+                    for (const b of bpg) {
+                        b.classList.add("animation");
+                      }
+                    
+                })();
+                alert(random.Player + " swats " + randomTwo.Player + "!");
+            } else if (randomStat === 4 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[0].props.className);
+
+                    for (const b of bpg) {
+                        b.classList.add("animation");
+                      }
+                    
+                })();
+                alert(randomTwo.Player + " swats " + random.Player + "!");
+            } else if (randomStat === 5 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[1].props.className);
+
+                    for (const b of bpg) {
+                        b.classList.add("animation");
+                      }
+                    
+                })();
+                alert(random.Player + " picks " + randomTwo.Player + "'s pocket!");
+            } else if (randomStat === 5 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[1].props.className);
+
+                    for (const b of bpg) {
+                        b.classList.add("animation");
+                      }
+                    
+                })();
+                alert(randomTwo.Player + " picks " + random.Player + "'s pocket!");
+            } else if (randomStat === 6 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[2].props.className);
+
+                    for (const b of bpg) {
+                        b.classList.add("animation");
+                      }
+                    
+                })();
+                alert(randomTwo.Player + " turns the ball over... that's embarrassing");
+            } else if (randomStat === 6 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
+                (() => {
+                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[2].props.className);
+
+                    for (const b of bpg) {
+                        b.classList.add("animation");
+                      }
+                    
+                })();
+                alert(random.Player + " turns the ball over... that's embarrassing");
+            }
+
+        }
+
+
   let statsParagraphElements = document.querySelectorAll(".stats-paragraph");
   (function _removeClasses() {
     for (var i = 0; i < statsParagraphElements.length; i++) {
@@ -101,13 +317,6 @@ newPlayersOnAlert = () => {
   render(){
    
     console.log("app render");
-    const random = Math.floor(Math.random() * Images.length); 
-    const randomTwo = Math.floor(Math.random() * Images.length);
-    
-
-    if(random === randomTwo) { 
-      this.setState({ data: Images })
-    } 
     
 
 
@@ -133,39 +342,40 @@ newPlayersOnAlert = () => {
           
         <PlayerCard render={this.handleAlerts()} data={this.state.data} newPlayersOnAlert={this.newPlayersOnAlert} >
         
-                <div className="name-container">{this.state.data[random].Player}<span className="year">{this.state.data[random].Season}</span></div>
+                <div className="name-container"><span className="year"></span></div>
                 <div className="player-image-container">
-                    <img className="player-image" src= {this.state.data[random].src} alt = {this.state.data[random].alt} />
+                    <img className="player-image"  />
                 </div>
                 <div className="stats">
                     <p className="stats-paragraph left PPG" >
-                      <span className="stats-before-hover">PPG: {this.state.data[random].PTS}</span>
+                      <span className="stats-before-hover">PPG: </span>
                       <span className="stats-hover">Points Per Game</span>
                       </p>
                     <p className="stats-paragraph left TSP">
-                      <span className="stats-before-hover">TSP: {((this.state.data[random].TSP) * 100 ).toFixed(1) }%</span>
+                      <span className="stats-before-hover">TSP: </span>
+                      {/* {((this.state.data[random].TSP) * 100 ).toFixed(1) }% */}
                       <span className="stats-hover">True Shooting %</span>
                       </p>
                     <p className="stats-paragraph left APG">
-                      <span className="stats-before-hover">APG: {this.state.data[random].AST}</span>
+                      <span className="stats-before-hover">APG: </span>
                       <span className="stats-hover">Assists Per Game</span>
                       </p>
                     <p className="stats-paragraph left RPG">
-                      <span className="stats-before-hover">RPG: {this.state.data[random].TRB}</span>
+                      <span className="stats-before-hover">RPG: </span>
                       <span className="stats-hover">Rebounds Per Game</span>
                       </p>
 
                     <div className="stats-right-container">
                     <p className="stats-paragraph right BPG">
-                      <span className="stats-before-hover">BPG: {this.state.data[random].BLK}</span>
+                      <span className="stats-before-hover">BPG: </span>
                       <span className="stats-hover">Blocks Per Game</span>
                       </p>
                     <p className="stats-paragraph right SPG">
-                      <span className="stats-before-hover">SPG: {this.state.data[random].STL}</span>
+                      <span className="stats-before-hover">SPG: </span>
                       <span className="stats-hover">Steals Per Game</span>
                       </p>
                     <p className="stats-paragraph right TPG">
-                      <span className="stats-before-hover">TPG: {this.state.data[random].TOV}</span>
+                      <span className="stats-before-hover">TPG: </span>
                       <span className="stats-hover">Turnovers Per Game</span>
                       </p>
                     </div>
@@ -177,41 +387,41 @@ newPlayersOnAlert = () => {
 
 
 
-        <PlayerCard randomTwo={this.state.data[randomTwo]} random={this.state.data[random]} > 
+        <PlayerCard > 
 
-        <div className="name-container">{this.state.data[randomTwo].Player}<span className="year">{this.state.data[randomTwo].Season}</span></div>
+        <div className="name-container"><span className="year"></span></div>
                 <div className="player-image-container">
-                    <img className="player-image" src= {this.state.data[randomTwo].src} alt = {this.state.data[randomTwo].alt} />
+                    <img className="player-image"  />
                 </div>
                 <div className="stats">
                 <p className="stats-paragraph left PPG" >
-                <span className="stats-before-hover">PPG: {this.state.data[randomTwo].PTS}</span>
+                <span className="stats-before-hover">PPG: </span>
                       <span className="stats-hover">Points Per Game</span>
                       </p>
                     <p className="stats-paragraph left TSP">
-                      <span className="stats-before-hover">TSP: {((this.state.data[randomTwo].TSP) * 100 ).toFixed(1) }%</span>
+                      <span className="stats-before-hover">TSP: </span>
                       <span className="stats-hover">True Shooting %</span>
                       </p>
                     <p className="stats-paragraph left APG">
-                      <span className="stats-before-hover">APG: {this.state.data[randomTwo].AST}</span>
+                      <span className="stats-before-hover">APG: </span>
                       <span className="stats-hover">Assists Per Game</span>
                       </p>
                     <p className="stats-paragraph left RPG">
-                      <span className="stats-before-hover">RPG: {this.state.data[randomTwo].TRB}</span>
+                      <span className="stats-before-hover">RPG: </span>
                       <span className="stats-hover">Rebounds Per Game</span>
                       </p>
 
                     <div className="stats-right-container">
                     <p className="stats-paragraph right BPG">
-                      <span className="stats-before-hover">BPG: {this.state.data[randomTwo].BLK}</span>
+                      <span className="stats-before-hover">BPG: </span>
                       <span className="stats-hover">Blocks Per Game</span>
                       </p>
                     <p className="stats-paragraph right SPG">
-                      <span className="stats-before-hover">SPG: {this.state.data[randomTwo].STL}</span>
+                      <span className="stats-before-hover">SPG: </span>
                       <span className="stats-hover">Steals Per Game</span>
                       </p>
                     <p className="stats-paragraph right TPG">
-                      <span className="stats-before-hover">TPG: {this.state.data[randomTwo].TOV}</span>
+                      <span className="stats-before-hover">TPG: </span>
                       <span className="stats-hover">Turnovers Per Game</span></p>
                     </div>
                     
