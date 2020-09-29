@@ -45,53 +45,53 @@ window.alert = function(msg){
 //experimenting 
 
 
-$(function(e){
-    // add listener for when enter button pressed (had to make focus on window so that enter recognized from anywhere, and not just if alert focused on)
-    $(window).focus().keypress(function(e){
-        if(e.charCode === 13) {
-            $('.customAlert').css('animation', 'fadeOut 0.3s linear');
-            $(".basketball-container").show().css("animation", "fadeIn 0.3s linear");
+// $(function(e){
+//     // add listener for when enter button pressed (had to make focus on window so that enter recognized from anywhere, and not just if alert focused on)
+//     $(window).focus().keypress(function(e){
+//         if(e.charCode === 13) {
+//             $('.customAlert').css('animation', 'fadeOut 0.3s linear');
+//             $(".basketball-container").show().css("animation", "fadeIn 0.3s linear");
             
-            if(self.props.data){ // kind of working to generate new players, although seems to be updating state mutliple times :(
-                console.log("new players");
-                self.props.newPlayersOnAlert();
-            } 
+//             if(self.props.data){ // kind of working to generate new players, although seems to be updating state mutliple times :(
+//                 console.log("new players");
+//                 self.props.newPlayersOnAlert();
+//             } 
 
-        setTimeout(function(){
-         $('.customAlert').css('animation', 'none');
-            $('.customAlert').css('display', 'none');
-        }, 300);
-        }
+//         setTimeout(function(){
+//          $('.customAlert').css('animation', 'none');
+//             $('.customAlert').css('display', 'none');
+//         }, 300);
+//         }
     
-      })
-  // add listener for when our confirmation button is clicked
+//       })
+//   // add listener for when our confirmation button is clicked
   
-	$('.confirmButton').click(function(){
-    $('.customAlert').css('animation', 'fadeOut 0.3s linear');
+// 	$('.confirmButton').click(function(){
+//     $('.customAlert').css('animation', 'fadeOut 0.3s linear');
 
-    if(self.props.data){ // kind of working to generate new players, although seems to be updating state mutliple times :(
-        console.log("new players");
-        self.props.newPlayersOnAlert();
+//     // if(self.props.data){ // kind of working to generate new players, although seems to be updating state mutliple times :(
+//     //     console.log("new players");
+//     //     self.props.newPlayersOnAlert();
         
-    } 
+//     // } 
     
-    $(".basketball-container").show().css("animation", "fadeIn 0.3s linear");
+//     $(".basketball-container").show().css("animation", "fadeIn 0.3s linear");
 
-    setTimeout(function(){
-     $('.customAlert').css('animation', 'none');
-        $('.customAlert').css('display', 'none');
-        //working on this shit ................------------------------
-        // if(this.props != undefined){
-        //     this.props.newPlayersOnAlert();
-        // }
-    }, 300);
-  })
+//     setTimeout(function(){
+//      $('.customAlert').css('animation', 'none');
+//         $('.customAlert').css('display', 'none');
+//         //working on this shit ................------------------------
+//         // if(this.props != undefined){
+//         //     this.props.newPlayersOnAlert();
+//         // }
+//     }, 300);
+//   })
   
-});
+// });
 
 
-        // putting all the below in here so that no alert upon App rnder when cards not even showing 
-        console.log('updated');
+//         // putting all the below in here so that no alert upon App rnder when cards not even showing 
+//         console.log('updated');
         
         // const random = this.props.random;
         // const randomTwo = this.props.randomTwo;
@@ -293,16 +293,16 @@ $(function(e){
         
             </div>
 
-<div className='customAlert'  >
+{/* <div className='customAlert'  >
     <div className="message-container"> 
          <p className='message'></p>  
     </div>
 
   <input type='button' className='confirmButton'  />
   
-        <div className="score-left">0</div>
-  <div className="score-right">0</div>
-</div>
+        {/* <div className="score-left">0</div>
+  <div className="score-right">0</div> 
+</div> */}
 
 
 </div>

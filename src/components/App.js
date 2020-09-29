@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-// import $ from 'jquery';
+import $ from 'jquery';
 import * as d3 from 'd3';
 import importedCsvData from '../assets/players.csv';
 import Images from'../Images';
@@ -15,6 +15,65 @@ import PlayerCard from './PlayerCard';
 //5. update cards on alert ok, then compare stats when click juump ball
 //6. have playercards render before player info
 
+// override default browser alert
+window.alert = function(msg){
+  //hide basketball when alert pops up...
+$(".basketball-container").hide();
+//......................................
+$('.message').text(msg);
+$('.customAlert').css('animation', 'fadeIn 0.3s linear');
+$('.customAlert').css('display', 'inline');
+setTimeout(function(){
+  $('.customAlert').css('animation', 'none');
+}, 300);
+}
+
+//experimenting 
+
+
+$(function(e){
+  // add listener for when enter button pressed (had to make focus on window so that enter recognized from anywhere, and not just if alert focused on)
+  $(window).focus().keypress(function(e){
+      if(e.key === 13) {
+          $('.customAlert').css('animation', 'fadeOut 0.3s linear');
+          $(".basketball-container").show().css("animation", "fadeIn 0.3s linear");
+          
+          if(this.props.data){ // kind of working to generate new players, although seems to be updating state mutliple times :(
+            this.setState({ data: Images });
+            console.log("new Players");
+          } 
+
+      setTimeout(function(){
+       $('.customAlert').css('animation', 'none');
+          $('.customAlert').css('display', 'none');
+      }, 300);
+      }
+  
+    })
+// add listener for when our confirmation button is clicked
+
+$('.confirmButton').click(function(){
+  $('.customAlert').css('animation', 'fadeOut 0.3s linear');
+
+  if(this.props.data){ // kind of working to generate new players, although seems to be updating state mutliple times :(
+    this.setState({ data: Images });
+    console.log("new Players");
+      
+  } 
+  
+  $(".basketball-container").show().css("animation", "fadeIn 0.3s linear");
+
+  setTimeout(function(){
+   $('.customAlert').css('animation', 'none');
+      $('.customAlert').css('display', 'none');
+      //working on this shit ................------------------------
+      // if(this.props != undefined){
+      //     this.props.newPlayersOnAlert();
+      // }
+  }, 300);
+})
+
+});
 
 class App extends React.Component {
   constructor(props) {
@@ -22,9 +81,10 @@ class App extends React.Component {
     
     this.state = {
         data: null,
-        // hasMounted: false //I don't think this is doign anything??????......
+        // countLeft: 0,
+        // countRight: 0
     };
-    // console.log(this.state.hasMounted);
+   
 }
 
 componentDidMount() { 
@@ -101,8 +161,8 @@ componentDidUpdate() {
 
 handleBasketballButton =  () => {
  
-  const random = Math.floor(Math.random() * Images.length); 
-  const randomTwo = Math.floor(Math.random() * Images.length);
+  let random = Math.floor(Math.random() * Images.length); 
+  let randomTwo = Math.floor(Math.random() * Images.length);
     
   if (random === randomTwo) { //so that won't be same two players 
     random = Math.floor(Math.random() * Images.length); 
@@ -114,7 +174,6 @@ handleBasketballButton =  () => {
             
             const statsArrayRandom = [];
             const randomPPG = this.state.data[random].PTS;
-            console.log(randomPPG);
             const randomTSP = this.state.data[random].TSP;
             const randomAPG = this.state.data[random].AST;
             const randomRPG = this.state.data[random].TRB;
@@ -149,8 +208,10 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
+                this.setState( {countLeft: +1} );
+                console.log(this.state.countLeft, this.state.countRight);
                 alert(random.Player + " gets by " + randomTwo.Player + " for the bucket!");
-                
+
                 
 
             } else if (randomStat === 0 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
@@ -164,7 +225,8 @@ handleBasketballButton =  () => {
                       }
 
                 })();
-                
+                this.setState( {countLeft: +1} );
+                console.log(this.state.countLeft, this.state.countRight);
                 alert(randomTwo.Player + " gets by " + random.Player + " for the bucket!");
                 
             } else if (randomStat === 1 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
@@ -176,6 +238,7 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
+                this.setState( {countLeft: +1} );
                 alert(random.Player + " is money!");
             } else if (randomStat === 1 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
@@ -186,6 +249,8 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
+                this.setState( {countLeft: +1} );
+                console.log(this.state.countLeft, this.state.countRight);
                 alert(randomTwo.Player + " is money!");
             } else if (randomStat === 2 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
@@ -196,6 +261,8 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
+                this.setState( {countLeft: +1} );
+                console.log(this.state.countLeft, this.state.countRight);
                 alert(random.Player + " makes " + randomTwo.Player + "'s head spin with the dime!");
             } else if (randomStat === 2 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
@@ -206,6 +273,8 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
+                this.setState( {countLeft: +1} );
+                console.log(this.state.countLeft, this.state.countRight);
                 alert(randomTwo.Player + " makes " + random.Player + "'s head spin with the dime!");
             } else if (randomStat === 3 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
@@ -216,6 +285,8 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
+                this.setState( {countLeft: +1} );
+                console.log(this.state.countLeft, this.state.countRight);
                 alert(random.Player + " secures the rebound!");
             } else if (randomStat === 3 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
@@ -226,6 +297,8 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
+                this.setState( {countLeft: +1} );
+                console.log(this.state.countLeft, this.state.countRight);
                 alert(randomTwo.Player + " secures the rebound!");
             } else if (randomStat === 4 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
@@ -236,6 +309,8 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
+                this.setState( {countLeft: +1} );
+                console.log(this.state.countLeft, this.state.countRight);
                 alert(random.Player + " swats " + randomTwo.Player + "!");
             } else if (randomStat === 4 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
@@ -246,6 +321,8 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
+                this.setState( {countLeft: +1} );
+                console.log(this.state.countLeft, this.state.countRight);
                 alert(randomTwo.Player + " swats " + random.Player + "!");
             } else if (randomStat === 5 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
@@ -256,6 +333,8 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
+                this.setState( {countLeft: +1} );
+                console.log(this.state.countLeft, this.state.countRight);
                 alert(random.Player + " picks " + randomTwo.Player + "'s pocket!");
             } else if (randomStat === 5 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
@@ -266,6 +345,8 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
+                this.setState( {countLeft: +1} );
+                console.log(this.state.countLeft, this.state.countRight);
                 alert(randomTwo.Player + " picks " + random.Player + "'s pocket!");
             } else if (randomStat === 6 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
@@ -276,6 +357,8 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
+                this.setState( {countLeft: +1} );
+                console.log(this.state.countLeft, this.state.countRight);
                 alert(randomTwo.Player + " turns the ball over... that's embarrassing");
             } else if (randomStat === 6 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
@@ -286,6 +369,8 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
+                this.setState( {countLeft: +1} );
+                console.log(this.state.countLeft, this.state.countRight);
                 alert(random.Player + " turns the ball over... that's embarrassing");
             }
 
@@ -309,10 +394,10 @@ handleAlerts = () => {
   };
 }
 
-newPlayersOnAlert = () => {
-  this.setState({ data: Images });
-  console.log("new Players");
-}
+// newPlayersOnAlert = () => {
+//   this.setState({ data: Images });
+//   console.log("new Players");
+// }
 
   
   render(){
@@ -354,7 +439,7 @@ newPlayersOnAlert = () => {
                       </p>
                     <p className="stats-paragraph left TSP">
                       <span className="stats-before-hover">TSP: </span>
-                      {/* {((this.state.data[random].TSP) * 100 ).toFixed(1) }% */}
+
                       <span className="stats-hover">True Shooting %</span>
                       </p>
                     <p className="stats-paragraph left APG">
@@ -434,6 +519,17 @@ newPlayersOnAlert = () => {
   
           
           </div>
+
+          <div className='customAlert'  >
+    <div className="message-container"> 
+         <p className='message'></p>  
+    </div>
+
+  <input type='button' className='confirmButton'  />
+  
+        <div className="score-left">0</div>
+  <div className="score-right">0</div>
+</div>
        
       </div>
       
