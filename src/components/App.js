@@ -9,12 +9,11 @@ import PlayerCard from './PlayerCard';
 // import Scoreboard from './Scoreboard'; // prob gonna just get rid of this and component
 
 // working on... 
-//1. why setState before alert in PlayerCard not working and causing multiple animations?
 // 2. get scorebard working * add state count to playerCard???
 //3. make sure doesn't add two to scorecard since two playerCards
 // 4.drop shadow on monitor and cards?
 //5. update cards on alert ok, then compare stats when click juump ball
-
+//6. have playercards render before player info
 
 
 class App extends React.Component {
@@ -55,7 +54,7 @@ componentDidMount() {
 
    self.setState({ data: Images }); // do I need this with refig????????
    console.log(data[40]);
-   //setting initial cards to Jordan and Kobe....
+   //setting initial cards to Jordan and Kobe-----------------------
    //Jordan
    document.getElementsByClassName("name-container")[0].insertAdjacentHTML('afterbegin', data[0].Player );
    document.getElementsByClassName("year")[0].insertAdjacentHTML('afterbegin', data[0].Season);
@@ -114,23 +113,24 @@ handleBasketballButton =  () => {
         if(random !== undefined || randomTwo !== undefined){
             
             const statsArrayRandom = [];
-            const randomPPG = random.PTS;
-            const randomTSP = random.TSP;
-            const randomAPG = random.AST;
-            const randomRPG = random.TRB;
-            const randomBPG = random.BLK;
-            const randomSPG = random.STL;
-            const randomTPG = random.TOV;
+            const randomPPG = this.state.data[random].PTS;
+            console.log(randomPPG);
+            const randomTSP = this.state.data[random].TSP;
+            const randomAPG = this.state.data[random].AST;
+            const randomRPG = this.state.data[random].TRB;
+            const randomBPG = this.state.data[random].BLK;
+            const randomSPG = this.state.data[random].STL;
+            const randomTPG = this.state.data[random].TOV;
             statsArrayRandom.push(randomPPG, randomTSP, randomAPG, randomRPG, randomBPG, randomSPG, randomTPG);
 
             const statsArrayRandomTwo = [];
-            const randomTwoPPG = randomTwo.PTS;
-            const randomTwoTSP = randomTwo.TSP;
-            const randomTwoAPG = randomTwo.AST;
-            const randomTwoRPG = randomTwo.TRB;
-            const randomTwoBPG = randomTwo.BLK;
-            const randomTwoSPG = randomTwo.STL;
-            const randomTwoTPG = randomTwo.TOV;
+            const randomTwoPPG = this.state.data[randomTwo].PTS;
+            const randomTwoTSP = this.state.data[randomTwo].TSP;
+            const randomTwoAPG = this.state.data[randomTwo].AST;
+            const randomTwoRPG = this.state.data[randomTwo].TRB;
+            const randomTwoBPG = this.state.data[randomTwo].BLK;
+            const randomTwoSPG = this.state.data[randomTwo].STL;
+            const randomTwoTPG = this.state.data[randomTwo].TOV;
             statsArrayRandomTwo.push(randomTwoPPG, randomTwoTSP, randomTwoAPG, randomTwoRPG, randomTwoBPG, randomTwoSPG, randomTwoTPG);
 
             const randomStat = Math.floor(Math.random() * statsArrayRandom.length);
@@ -142,7 +142,7 @@ handleBasketballButton =  () => {
                 // this.setState({countLeft: +1}); causes to rerender :(
                 (() => {
                 
-                    let ppg =  document.getElementsByClassName(this.props.children[2].props.children[0].props.className); 
+                    let ppg =  document.getElementsByClassName("stats-paragraph left PPG"); 
                     
                     for (const p of ppg) {
                         p.classList.add("animation");
@@ -151,12 +151,13 @@ handleBasketballButton =  () => {
                 })();
                 alert(random.Player + " gets by " + randomTwo.Player + " for the bucket!");
                 
+                
 
             } else if (randomStat === 0 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 // this.setState({countRight: +1});
                 (() => {
                     
-                    let ppg =  document.getElementsByClassName(this.props.children[2].props.children[0].props.className);
+                    let ppg =  document.getElementsByClassName("stats-paragraph left PPG");
           
                     for (const p of ppg) {
                         p.classList.add("animation");
@@ -168,7 +169,7 @@ handleBasketballButton =  () => {
                 
             } else if (randomStat === 1 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
-                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[1].props.className);
+                    let tsp =  document.getElementsByClassName("stats-paragraph left TSP");
                     //started keeping variable names same when copying and pastying since local scope 
                     for (const t of tsp) {
                         t.classList.add("animation");
@@ -178,7 +179,7 @@ handleBasketballButton =  () => {
                 alert(random.Player + " is money!");
             } else if (randomStat === 1 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
-                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[1].props.className);
+                    let tsp =  document.getElementsByClassName("stats-paragraph left TSP");
                     
                     for (const t of tsp) {
                         t.classList.add("animation");
@@ -188,7 +189,7 @@ handleBasketballButton =  () => {
                 alert(randomTwo.Player + " is money!");
             } else if (randomStat === 2 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
-                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[2].props.className);
+                    let tsp =  document.getElementsByClassName("stats-paragraph left APG");
                     
                     for (const t of tsp) {
                         t.classList.add("animation");
@@ -198,7 +199,7 @@ handleBasketballButton =  () => {
                 alert(random.Player + " makes " + randomTwo.Player + "'s head spin with the dime!");
             } else if (randomStat === 2 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
-                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[2].props.className);
+                    let tsp =  document.getElementsByClassName("stats-paragraph left APG");
                     
                     for (const t of tsp) {
                         t.classList.add("animation");
@@ -208,7 +209,7 @@ handleBasketballButton =  () => {
                 alert(randomTwo.Player + " makes " + random.Player + "'s head spin with the dime!");
             } else if (randomStat === 3 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
-                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[3].props.className);
+                    let tsp =  document.getElementsByClassName("stats-paragraph left RPG");
                     
                     for (const t of tsp) {
                         t.classList.add("animation");
@@ -218,7 +219,7 @@ handleBasketballButton =  () => {
                 alert(random.Player + " secures the rebound!");
             } else if (randomStat === 3 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
-                    let tsp =  document.getElementsByClassName(this.props.children[2].props.children[3].props.className);
+                    let tsp =  document.getElementsByClassName("stats-paragraph left RPG");
                     
                     for (const t of tsp) {
                         t.classList.add("animation");
@@ -228,7 +229,7 @@ handleBasketballButton =  () => {
                 alert(randomTwo.Player + " secures the rebound!");
             } else if (randomStat === 4 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
-                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[0].props.className);
+                    let bpg =  document.getElementsByClassName("stats-paragraph right BPG");
                     
                     for (const b of bpg) {
                         b.classList.add("animation");
@@ -238,7 +239,7 @@ handleBasketballButton =  () => {
                 alert(random.Player + " swats " + randomTwo.Player + "!");
             } else if (randomStat === 4 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
-                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[0].props.className);
+                    let bpg =  document.getElementsByClassName("stats-paragraph right BPG");
 
                     for (const b of bpg) {
                         b.classList.add("animation");
@@ -248,7 +249,7 @@ handleBasketballButton =  () => {
                 alert(randomTwo.Player + " swats " + random.Player + "!");
             } else if (randomStat === 5 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
-                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[1].props.className);
+                    let bpg =  document.getElementsByClassName("stats-paragraph right SPG");
 
                     for (const b of bpg) {
                         b.classList.add("animation");
@@ -258,7 +259,7 @@ handleBasketballButton =  () => {
                 alert(random.Player + " picks " + randomTwo.Player + "'s pocket!");
             } else if (randomStat === 5 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
-                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[1].props.className);
+                    let bpg =  document.getElementsByClassName("stats-paragraph right SPG");
 
                     for (const b of bpg) {
                         b.classList.add("animation");
@@ -268,7 +269,7 @@ handleBasketballButton =  () => {
                 alert(randomTwo.Player + " picks " + random.Player + "'s pocket!");
             } else if (randomStat === 6 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
-                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[2].props.className);
+                    let bpg =  document.getElementsByClassName("stats-paragraph right TPG");
 
                     for (const b of bpg) {
                         b.classList.add("animation");
@@ -278,7 +279,7 @@ handleBasketballButton =  () => {
                 alert(randomTwo.Player + " turns the ball over... that's embarrassing");
             } else if (randomStat === 6 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
-                    let bpg =  document.getElementsByClassName(this.props.children[2].props.children[4].props.children[2].props.className);
+                    let bpg =  document.getElementsByClassName("stats-paragraph right TPG");
 
                     for (const b of bpg) {
                         b.classList.add("animation");
