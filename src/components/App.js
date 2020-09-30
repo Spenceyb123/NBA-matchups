@@ -15,67 +15,13 @@ import PlayerCard from './PlayerCard';
 //5. update cards on alert ok, then compare stats when click juump ball
 //6. have playercards render before player info
 
+
 // override default browser alert
-window.alert = function(msg){
-  //hide basketball when alert pops up...
-$(".basketball-container").hide();
-//......................................
-$('.message').text(msg);
-$('.customAlert').css('animation', 'fadeIn 0.3s linear');
-$('.customAlert').css('display', 'inline');
-setTimeout(function(){
-  $('.customAlert').css('animation', 'none');
-}, 300);
-}
-
-//experimenting 
 
 
-$(function(e){
-  // add listener for when enter button pressed (had to make focus on window so that enter recognized from anywhere, and not just if alert focused on)
-  $(window).focus().keypress(function(e){
-      if(e.key === 13) {
-          $('.customAlert').css('animation', 'fadeOut 0.3s linear');
-          $(".basketball-container").show().css("animation", "fadeIn 0.3s linear");
-          
-          if(this.props.data){ // kind of working to generate new players, although seems to be updating state mutliple times :(
-            this.setState({ data: Images });
-            console.log("new Players");
-          } 
-
-      setTimeout(function(){
-       $('.customAlert').css('animation', 'none');
-          $('.customAlert').css('display', 'none');
-      }, 300);
-      }
-  
-    })
-// add listener for when our confirmation button is clicked
-
-$('.confirmButton').click(function(){
-  $('.customAlert').css('animation', 'fadeOut 0.3s linear');
-
-  if(this.props.data){ // kind of working to generate new players, although seems to be updating state mutliple times :(
-    this.setState({ data: Images });
-    console.log("new Players");
-      
-  } 
-  
-  $(".basketball-container").show().css("animation", "fadeIn 0.3s linear");
-
-  setTimeout(function(){
-   $('.customAlert').css('animation', 'none');
-      $('.customAlert').css('display', 'none');
-      //working on this shit ................------------------------
-      // if(this.props != undefined){
-      //     this.props.newPlayersOnAlert();
-      // }
-  }, 300);
-})
-
-});
 
 class App extends React.Component {
+  
   constructor(props) {
     super(props);
     
@@ -84,11 +30,11 @@ class App extends React.Component {
         // countLeft: 0,
         // countRight: 0
     };
-   
+    this.handleKeyPress = this.handleKeyPress.bind(this);
 }
 
 componentDidMount() { 
-
+  // this.customAlertHandle.bind(this);
   let self = this;
   d3.csv(importedCsvData).then(function(data) {
     data.forEach(function(d) {
@@ -141,11 +87,6 @@ componentDidMount() {
 
 
    
-
-
-
-   
-  //  document.getElementsByClassName("year")[0].innerText = data[0].Season;
   }); 
   console.log('mounted');
 }
@@ -155,12 +96,12 @@ componentDidMount() {
 
 componentDidUpdate() {
   console.log("app updated");
-  console.log(document.getElementsByClassName("year"));
 }
 
 
 handleBasketballButton =  () => {
- 
+  console.log(this.customAlertHandle.bind());
+  // customAlertHandle.bind(this);
   let random = Math.floor(Math.random() * Images.length); 
   let randomTwo = Math.floor(Math.random() * Images.length);
     
@@ -208,12 +149,10 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
-                this.setState( {countLeft: +1} );
-                console.log(this.state.countLeft, this.state.countRight);
+     
                 alert(random.Player + " gets by " + randomTwo.Player + " for the bucket!");
-
+              
                 
-
             } else if (randomStat === 0 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 // this.setState({countRight: +1});
                 (() => {
@@ -225,10 +164,10 @@ handleBasketballButton =  () => {
                       }
 
                 })();
-                this.setState( {countLeft: +1} );
-                console.log(this.state.countLeft, this.state.countRight);
-                alert(randomTwo.Player + " gets by " + random.Player + " for the bucket!");
                 
+                alert(randomTwo.Player + " gets by " + random.Player + " for the bucket!");
+                console.log($('.customAlert'));
+
             } else if (randomStat === 1 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
                     let tsp =  document.getElementsByClassName("stats-paragraph left TSP");
@@ -238,8 +177,10 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
-                this.setState( {countLeft: +1} );
+                
                 alert(random.Player + " is money!");
+                console.log($('.customAlert'));
+
             } else if (randomStat === 1 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
                     let tsp =  document.getElementsByClassName("stats-paragraph left TSP");
@@ -249,9 +190,10 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
-                this.setState( {countLeft: +1} );
-                console.log(this.state.countLeft, this.state.countRight);
+               
                 alert(randomTwo.Player + " is money!");
+                console.log($('.customAlert'));
+
             } else if (randomStat === 2 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
                     let tsp =  document.getElementsByClassName("stats-paragraph left APG");
@@ -261,9 +203,10 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
-                this.setState( {countLeft: +1} );
-                console.log(this.state.countLeft, this.state.countRight);
+                
                 alert(random.Player + " makes " + randomTwo.Player + "'s head spin with the dime!");
+                console.log($('.customAlert'));
+
             } else if (randomStat === 2 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
                     let tsp =  document.getElementsByClassName("stats-paragraph left APG");
@@ -273,9 +216,9 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
-                this.setState( {countLeft: +1} );
-                console.log(this.state.countLeft, this.state.countRight);
+               
                 alert(randomTwo.Player + " makes " + random.Player + "'s head spin with the dime!");
+                console.log($('.customAlert'));
             } else if (randomStat === 3 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
                     let tsp =  document.getElementsByClassName("stats-paragraph left RPG");
@@ -285,9 +228,10 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
-                this.setState( {countLeft: +1} );
-                console.log(this.state.countLeft, this.state.countRight);
+                
                 alert(random.Player + " secures the rebound!");
+                console.log($('.customAlert'));
+
             } else if (randomStat === 3 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
                     let tsp =  document.getElementsByClassName("stats-paragraph left RPG");
@@ -297,9 +241,11 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
-                this.setState( {countLeft: +1} );
-                console.log(this.state.countLeft, this.state.countRight);
+               
                 alert(randomTwo.Player + " secures the rebound!");
+                console.log($('.customAlert'));
+                // this.customAlertHandle();
+
             } else if (randomStat === 4 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
                     let bpg =  document.getElementsByClassName("stats-paragraph right BPG");
@@ -309,9 +255,10 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
-                this.setState( {countLeft: +1} );
-                console.log(this.state.countLeft, this.state.countRight);
+                
                 alert(random.Player + " swats " + randomTwo.Player + "!");
+                console.log($('.customAlert'));
+
             } else if (randomStat === 4 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
                     let bpg =  document.getElementsByClassName("stats-paragraph right BPG");
@@ -321,9 +268,10 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
-                this.setState( {countLeft: +1} );
-                console.log(this.state.countLeft, this.state.countRight);
+                
                 alert(randomTwo.Player + " swats " + random.Player + "!");
+                console.log($('.customAlert'));
+
             } else if (randomStat === 5 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
                     let bpg =  document.getElementsByClassName("stats-paragraph right SPG");
@@ -333,9 +281,10 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
-                this.setState( {countLeft: +1} );
-                console.log(this.state.countLeft, this.state.countRight);
+                
                 alert(random.Player + " picks " + randomTwo.Player + "'s pocket!");
+                console.log($('.customAlert'));
+
             } else if (randomStat === 5 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
                     let bpg =  document.getElementsByClassName("stats-paragraph right SPG");
@@ -345,9 +294,10 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
-                this.setState( {countLeft: +1} );
-                console.log(this.state.countLeft, this.state.countRight);
+      
                 alert(randomTwo.Player + " picks " + random.Player + "'s pocket!");
+                console.log($('.customAlert'));
+
             } else if (randomStat === 6 && statsArrayRandom[randomStat] < statsArrayRandomTwo[randomStat]) {
                 (() => {
                     let bpg =  document.getElementsByClassName("stats-paragraph right TPG");
@@ -357,9 +307,10 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
-                this.setState( {countLeft: +1} );
-                console.log(this.state.countLeft, this.state.countRight);
+                
                 alert(randomTwo.Player + " turns the ball over... that's embarrassing");
+                console.log($('.customAlert'));
+
             } else if (randomStat === 6 && statsArrayRandom[randomStat] > statsArrayRandomTwo[randomStat]) {
                 (() => {
                     let bpg =  document.getElementsByClassName("stats-paragraph right TPG");
@@ -369,35 +320,99 @@ handleBasketballButton =  () => {
                       }
                     
                 })();
-                this.setState( {countLeft: +1} );
-                console.log(this.state.countLeft, this.state.countRight);
+                
                 alert(random.Player + " turns the ball over... that's embarrassing");
+                console.log($('.customAlert')); //working on this
+
             }
 
         }
+       
 
-
-  let statsParagraphElements = document.querySelectorAll(".stats-paragraph");
-  (function _removeClasses() {
-    for (var i = 0; i < statsParagraphElements.length; i++) {
-      statsParagraphElements[i].classList.remove('animation')
-    }
-  }());
+  // let statsParagraphElements = document.querySelectorAll(".stats-paragraph");
+  // (function _removeClasses() {
+  //   for (var i = 0; i < statsParagraphElements.length; i++) {
+  //     statsParagraphElements[i].classList.remove('animation')
+  //   }
+  // }());
 }
 
-//so one of customalerts not show below...
-handleAlerts = () => {
-  let firstAlert = document.getElementsByClassName('customAlert')[1]; //actually second alert
+//experimenting 
+// customAlertHandle.bind(this);
 
-  if(firstAlert !== undefined) {
-    firstAlert.parentNode.removeChild(firstAlert);
-  };
-}
+
+customAlertHandle (){
+  // console.log(this);
+   // add listener for when enter button pressed (had to make focus on window so that enter recognized from anywhere, and not just if alert focused on)
+  //  $(window).focus().keypress(function(e){
+  //      if(e.key === 13) {
+  //        console.log("enter pressed");
+           $('.customAlert').css('animation', 'fadeOut 0.3s linear');
+           $(".basketball-container").show().css("animation", "fadeIn 0.3s linear");
+           
+          //  if(this.state.data){ // kind of working to generate new players, although seems to be updating state mutliple times :(
+          //    this.setState({ data: Images });
+          //    console.log("new Players");
+          //  } 
+ 
+       setTimeout(function(){
+        $('.customAlert').css('animation', 'none');
+           $('.customAlert').css('display', 'none');
+       }, 300);
+       //}
+   
+    //  })
+ 
+ // add listener for when our confirmation button is clicked
+//  $('.confirmButton').click(function(){
+//    $('.customAlert').css('animation', 'fadeOut 0.3s linear');
+//     console.log('clicked', this);
+//     this.setState({ data: Images });
+//     console.log(this.state.data);
+//     console.log("new Players");
+//   //  if(this.state.data){ // kind of working to generate new players, although seems to be updating state mutliple times :(
+//   //    this.setState({ data: Images });
+//   //    console.log(this.state.data);
+//   //    console.log("new Players");
+       
+//   //  } 
+   
+//    $(".basketball-container").show().css("animation", "fadeIn 0.3s linear");
+ 
+//    setTimeout(function(){
+//     $('.customAlert').css('animation', 'none');
+//        $('.customAlert').css('display', 'none');
+//        //working on this shit ................------------------------
+//        // if(this.props != undefined){
+//        //     this.props.newPlayersOnAlert();
+//        // }
+//    }, 300);
+//  })
+ 
+ };
+
+
+//   if(firstAlert !== undefined) {
+//     firstAlert.parentNode.removeChild(firstAlert);
+//   };
+// }
 
 // newPlayersOnAlert = () => {
 //   this.setState({ data: Images });
 //   console.log("new Players");
 // }
+
+handleKeyPress = (event) => {
+  
+  if(window.alert.display = true) {
+    console.log('true dat');
+    // document.getElementsByClassName('customAlert').focus();
+  }
+  if(event.key === 'Enter') {
+    console.log('enter enter'); 
+ }
+
+}
 
   
   render(){
@@ -416,7 +431,7 @@ handleAlerts = () => {
   
 
     return (
-      <div > 
+      <div className="main-div" tabIndex='-1'> 
  
         <div className="basketball-container"> 
         <img className="basketball" src={BasketballButton} onClick={this.handleBasketballButton } alt="click this basketball button to get a new matchup"/>
@@ -426,7 +441,7 @@ handleAlerts = () => {
         <div className="cards-container" tabIndex= "-1">
           
           
-        <PlayerCard render={this.handleAlerts()} data={this.state.data} newPlayersOnAlert={this.newPlayersOnAlert} >
+        <PlayerCard  data={this.state.data} newPlayersOnAlert={this.newPlayersOnAlert} >
         
                 <div className="name-container"><span className="year"></span></div>
                 <div className="player-image-container">
@@ -520,12 +535,12 @@ handleAlerts = () => {
           
           </div>
 
-          <div className='customAlert'  >
+          <div className='customAlert' tabindex='-1' onKeyPress={(event) => this.handleKeyPress(event)}  >
     <div className="message-container"> 
          <p className='message'></p>  
     </div>
 
-  <input type='button' className='confirmButton'  />
+  <input type='button' className='confirmButton' onClick={this.customAlertHandle}  />
   
         <div className="score-left">0</div>
   <div className="score-right">0</div>

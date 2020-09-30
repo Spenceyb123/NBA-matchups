@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
+// import $ from 'jquery';
 import './PlayerCard.css';
 import MTGCard from "../assets/images/mtg-card.png";
 
@@ -30,17 +30,17 @@ class PlayerCard extends React.Component {
         // }
         
 // override default browser alert
-window.alert = function(msg){
-    //hide basketball when alert pops up...
-  $(".basketball-container").hide();
-  //......................................
-  $('.message').text(msg);
-  $('.customAlert').css('animation', 'fadeIn 0.3s linear');
-  $('.customAlert').css('display', 'inline');
-  setTimeout(function(){
-    $('.customAlert').css('animation', 'none');
-  }, 300);
-}
+// window.alert = function(msg){
+//     //hide basketball when alert pops up...
+//   $(".basketball-container").hide();
+//   //......................................
+//   $('.message').text(msg);
+//   $('.customAlert').css('animation', 'fadeIn 0.3s linear');
+//   $('.customAlert').css('display', 'inline');
+//   setTimeout(function(){
+//     $('.customAlert').css('animation', 'none');
+//   }, 300);
+// }
 
 //experimenting 
 
